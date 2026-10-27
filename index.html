@@ -904,6 +904,18 @@ h1{font-size:clamp(52px,16vw,76px)}
 .dy-stage::before{inset:12px -6px -12px 6px}
 .dy-txt h3{font-size:clamp(32px,9vw,44px)}
 }
+.amnf{position:absolute;left:0;right:0;bottom:0;z-index:6;display:none;padding:14px 20px;background:rgba(10,20,15,.82);color:#fff;font:600 13px/1.45 var(--sans);text-align:center}
+.amov.nf .amnf{display:block}
+/* transition between videos + animated progress bar */
+.dy-fade{position:absolute;inset:0;z-index:3;pointer-events:none;opacity:0;background:radial-gradient(circle at 50% 55%,color-mix(in srgb,var(--dyc) 22%,#0b1610),#060e0a 75%);transition:opacity .75s var(--ease)}
+.dy-frame.xf .dy-fade{opacity:1}
+.dy-frame.xf.sw::after{display:none}
+.dy-frame video{transition:opacity .75s var(--ease),transform 1.2s var(--ease)}
+.dy-frame.xf video{transform:scale(1.03)}
+.dy-bar{height:4px;background:rgba(255,255,255,.16)}
+.dy-bar i{position:relative;background:linear-gradient(90deg,rgba(224,184,98,.35),var(--gold));box-shadow:0 0 12px rgba(224,184,98,.7);will-change:width}
+.dy-bar i::after{content:"";position:absolute;right:-5px;top:50%;width:10px;height:10px;margin-top:-5px;border-radius:50%;background:#fff3cf;box-shadow:0 0 0 3px rgba(224,184,98,.35),0 0 14px rgba(224,184,98,.9);animation:dyglow 1.6s ease-in-out infinite}
+@keyframes dyglow{50%{box-shadow:0 0 0 6px rgba(224,184,98,.18),0 0 18px rgba(224,184,98,1)}}
 </style>
 </head>
 <body>
@@ -1012,7 +1024,7 @@ h1{font-size:clamp(52px,16vw,76px)}
      <video id="dyVid" muted autoplay playsinline preload="auto"></video>
      <div id="dyYT"></div>
      <iframe id="dyFr" title="Alara Village video" allow="autoplay; fullscreen" allowfullscreen></iframe>
-     <div class="dy-shade"></div>
+     <div class="dy-shade"></div><div class="dy-fade"></div>
      <span class="dy-chip" id="dyChip"><i></i><span id="dyChipT"></span></span>
      <div class="dy-ctl">
       <button type="button" id="dyPlay" aria-label="Pause video"><svg class="i1" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><svg class="i2" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
@@ -1271,19 +1283,26 @@ function amYTplay(id,s,e){s=s||0;e=e||0;
  if(window.YT&&YT.Player)mk();
  else{window.onYouTubeIframeAPIReady=mk;if(!amYTs){amYTs=1;var sc=document.createElement("script");sc.src="https://www.youtube.com/iframe_api";document.head.appendChild(sc)}}
 }
-function amStop(){amTok++;clearTimeout(amFbT);amVid.pause();amVid.removeAttribute("src");amVid.load();amFr.src="about:blank";amStg.dataset.fb="";amStg.classList.remove("vp","vid","yt");if(amYTp&&amYTp.stopVideo)amYTp.stopVideo()}
-function amFall(t){if(t!==amTok)return;amVid.pause();amStg.classList.remove("vp");console.warn("Amenity video not found: "+amVid.getAttribute("src"))}
-/* plays the amenity's own MP4 from your project; if the file is missing, the amenity photo stays on screen */
+function amStop(){amTok++;clearTimeout(amFbT);amVid.pause();amVid.removeAttribute("src");amVid.load();amFr.src="about:blank";amStg.dataset.fb="";amStg.classList.remove("vp","vid","yt","nf");if(amYTp&&amYTp.stopVideo)amYTp.stopVideo()}
+var amMsg=document.createElement("div");amMsg.className="amnf";amStg.appendChild(amMsg);
+var AMDIRS=["Videos/","videos/","","assets/videos/","assets/","Video/","video/"],AMEXTS=[".mp4",".MP4",".webm",".mov"],AMPREF=null;
+function amCands(a){if(a.m)return [a.m];var l=[];if(AMPREF)l.push(AMPREF.d+a.f+AMPREF.e);AMEXTS.forEach(function(e){AMDIRS.forEach(function(d){l.push(d+a.f+e)})});return l}
+function amFall(t){if(t!==amTok)return;amVid.pause();amStg.classList.remove("vp");var a=AM[amCur];amMsg.textContent="Video not found. Upload it as "+AMDIR+a.f+AMEXT+" in your project (folder and file names are case-sensitive).";amStg.classList.add("nf");console.warn("Amenity video not found for "+a.n)}
+/* plays the amenity's own video; tries the usual folder/extension combinations until one loads */
 function amMode(){
- amStop();var t=amTok,a=AM[amCur];
+ amStop();var t=amTok,a=AM[amCur],c=amCands(a),k=0;
  if(a.yt){amYTplay(a.yt,0,0);return}
- amVid.muted=true;amVid.loop=false;amVid.onloadedmetadata=null;amVid.ontimeupdate=null;
- amVid.src=a.m||(AMDIR+a.f+AMEXT);
+ amVid.muted=true;amVid.loop=false;amVid.preload="auto";amVid.onloadedmetadata=null;amVid.ontimeupdate=null;
  amVid.onended=function(){if(t===amTok)amBack()};
- amVid.onplaying=function(){if(t===amTok){clearTimeout(amFbT);amStg.classList.add("vp")}};
- amVid.onerror=function(){amFall(t)};
- var pr=amVid.play();if(pr&&pr.catch)pr.catch(function(){amVid.muted=true;var q=amVid.play();if(q&&q.catch)q.catch(function(){})});
- amFbT=setTimeout(function(){if(t===amTok&&amVid.paused&&!amVid.currentTime)amFall(t)},25000);
+ amVid.onplaying=function(){if(t===amTok){clearTimeout(amFbT);amStg.classList.add("vp");var u=(amVid.getAttribute("src")||""),m=u.match(/^(.*\/)?[^\/]+(\.[A-Za-z0-9]+)$/);if(m)AMPREF={d:m[1]||"",e:m[2]}}};
+ function nx(){
+  if(t!==amTok)return;
+  if(k>=c.length){amFall(t);return}
+  amVid.src=c[k++];
+  var pr=amVid.play();if(pr&&pr.catch)pr.catch(function(){})
+ }
+ amVid.onerror=function(){if(t===amTok)nx()};
+ nx();
 }
 amFr.onload=function(){if(amStg.dataset.fb==="1"&&/drive\.google/.test(amFr.src))amStg.classList.add("vid")};
 var amMapEl=$("amMap"),amT;
@@ -1617,7 +1636,7 @@ var tl=g("dyTl"),fr=g("dyFrame"),vid=g("dyVid"),ifr=g("dyFr"),bar=g("dyBar"),pb=
 var cur=-1,muted=true,userPaused=false,inView=false,started=false,tok=0,fbT=0,ready=false,atEnd=false,yp=null,ypT=0,ytS=0,pend=null;
 function drv(id){return "https://drive.usercontent.google.com/download?id="+id+"&export=download&confirm=t"}
 function ytid(s){return s.replace(/.*(?:v=|youtu\.be\/|embed\/|shorts\/|live\/)([\w-]{11}).*/,"$1")}
-function next(){if(cur<D.length-1)go(cur+1);else{atEnd=true;clearTimeout(fbT);bar.style.width="100%";pb.classList.add("alt");pb.setAttribute("aria-label","Replay")}}
+function next(){clearTimeout(fbT);bar.style.width="100%";fr.classList.add("xf");setTimeout(function(){go(cur<D.length-1?cur+1:0)},750)}
 function isYT(){return fr.classList.contains("yt")}
 
 tl.innerHTML=D.map(function(x,i){return '<li><button type="button" class="dy-t" role="tab" data-i="'+i+'" aria-selected="false" aria-label="'+x.n+', '+x.t+'"><span class="dy-dot"></span><span class="dy-tx"><b>'+x.t+'</b><small>'+x.n+'</small></span></button></li>'}).join("");
@@ -1645,18 +1664,18 @@ function tryPlay(){
  var p=vid.play();
  if(p&&p.catch)p.catch(function(){
   if(!vid.muted){setMuted(true)}
-  var q=vid.play();if(q&&q.catch)q.catch(function(){fr.classList.remove("sw");userPaused=true;pb.classList.add("alt");pb.setAttribute("aria-label","Play video")})
+  var q=vid.play();if(q&&q.catch)q.catch(function(){fr.classList.remove("sw","xf");userPaused=true;pb.classList.add("alt");pb.setAttribute("aria-label","Play video")})
  });
 }
 function fallback(t){
  if(t!==tok||ready)return;
  var x=D[cur];if(!x.id)return;
- pauseAll();fr.classList.remove("sw","yt");fr.classList.add("fb");
+ pauseAll();fr.classList.remove("sw","xf","yt");fr.classList.add("fb");
  ifr.src="https://drive.google.com/file/d/"+x.id+"/preview";
 }
 function ytPlay(id,t){
  fr.classList.add("yt");
- function started_(){ready=true;clearTimeout(fbT);fr.classList.remove("sw");clearInterval(ypT);
+ function started_(){ready=true;clearTimeout(fbT);fr.classList.remove("sw","xf");clearInterval(ypT);
   ypT=setInterval(function(){try{var d=yp.getDuration();if(d)bar.style.width=(yp.getCurrentTime()/d*100)+"%"}catch(e){}},250)}
  function mk(){
   if(yp&&yp.loadVideoById){yp.loadVideoById({videoId:id,suggestedQuality:"hd1080"});setMuted(muted);return}
@@ -1682,7 +1701,7 @@ function go(i){
  sec.style.setProperty("--dyc",x.k);
  say(x);
  bar.style.width="0%";
- stopAll();fr.classList.add("sw");
+ stopAll();fr.classList.add("sw","xf");
  if(x.yt){ytPlay(ytid(x.yt),t)}
  else{
   vid.muted=muted;
@@ -1691,9 +1710,9 @@ function go(i){
  }
  fbT=setTimeout(function(){fallback(t)},x.m?25000:9000);
 }
-vid.addEventListener("playing",function(){if(isYT())return;ready=true;clearTimeout(fbT);fr.classList.remove("sw")});
-vid.addEventListener("loadeddata",function(){if(!isYT()&&(!inView||userPaused))fr.classList.remove("sw")});
-vid.addEventListener("timeupdate",function(){if(!isYT()&&vid.duration)bar.style.width=(vid.currentTime/vid.duration*100)+"%"});
+vid.addEventListener("playing",function(){if(isYT())return;ready=true;clearTimeout(fbT);fr.classList.remove("sw","xf")});
+vid.addEventListener("loadeddata",function(){if(!isYT()&&(!inView||userPaused))fr.classList.remove("sw","xf")});
+(function tick(){if(!isYT()&&vid.duration&&!fr.classList.contains("xf"))bar.style.width=(vid.currentTime/vid.duration*100)+"%";requestAnimationFrame(tick)})();
 vid.addEventListener("ended",function(){if(!isYT())next()});
 vid.addEventListener("error",function(){if(!isYT()&&vid.getAttribute("src"))fallback(tok)});
 
