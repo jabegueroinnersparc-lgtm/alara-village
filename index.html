@@ -922,6 +922,21 @@ h1{font-size:clamp(52px,16vw,76px)}
 .dy-dot::before{content:"";position:absolute;inset:-6px;border-radius:50%;opacity:0;background:conic-gradient(var(--gold) calc(var(--vp,0)*1turn),rgba(255,255,255,.14) 0);-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 calc(100% - 1px));mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 calc(100% - 1px));transition:opacity .4s}
 .dy-t.on .dy-dot::before{opacity:1}
 @media(max-width:860px){.dy-tl::after{width:calc((100% - 100%/6)*var(--p,0));height:2px;left:calc(100%/12);top:8.5px;background:linear-gradient(90deg,rgba(224,184,98,.55),var(--gold) 80%,#fff3cf)}}
+/* amenity video: not clickable, custom pause/play only */
+.amov video{pointer-events:none;-webkit-user-select:none;user-select:none}
+.amp{position:absolute;right:16px;bottom:18px;z-index:6;display:none;place-items:center;width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.6);background:rgba(10,20,15,.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:#fff;cursor:pointer;line-height:0;transition:all .3s var(--ease)}
+.amp svg{width:20px;height:20px}
+.amp .i2{display:none}.amp.alt .i1{display:none}.amp.alt .i2{display:block}
+.amp:hover{background:var(--gold);border-color:var(--gold);color:var(--forest);transform:scale(1.08)}
+.amov.amplay .amp{display:grid}
+.amb{position:absolute;left:0;right:0;bottom:0;z-index:6;height:4px;background:rgba(255,255,255,.16);display:none}
+.amb i{display:block;position:relative;height:100%;width:0;background:linear-gradient(90deg,rgba(224,184,98,.35),var(--gold));box-shadow:0 0 10px rgba(224,184,98,.7)}
+.amov.amplay .amb{display:block}
+@media(max-width:860px){.amp{width:42px;height:42px;right:10px;bottom:14px}.amp svg{width:18px;height:18px}.amb{height:3px}}
+/* sound button + videos are not clickable */
+.amp.ams{right:74px}
+.dy-frame video,.dy-frame iframe:not([src*="drive.google"]){pointer-events:none;-webkit-user-select:none;user-select:none}
+@media(max-width:860px){.amp.ams{right:60px}}
 </style>
 </head>
 <body>
@@ -1015,7 +1030,7 @@ h1{font-size:clamp(52px,16vw,76px)}
   <div class="ahead rv"><p class="kick">Amenities</p><h2>Explore the village, one amenity at a time</h2><p class="lead">Tap a pin on the map or choose an amenity below to see it up close and watch its video.</p></div>
   <div class="arow rv" id="amChips" role="group" aria-label="Amenities"></div>
   <div class="agrid">
-   <div class="amapw rv" id="amMap"><div class="amz" id="amZ"><img data-a="amap" alt="Alara Village amenities map"></div><div class="amov" id="amStage" data-m="v"><img id="amImg" alt=""><div id="amYT"></div><video id="amVid" playsinline controls preload="auto"></video><span class="amt"><i class="ano" id="amNo">Amenities</i><b id="amN"></b></span><iframe id="amFr" title="Amenity video" allow="autoplay; fullscreen" allowfullscreen></iframe><button type="button" class="amx" id="amX" aria-label="Back to map">&times;</button></div></div>
+   <div class="amapw rv" id="amMap"><div class="amz" id="amZ"><img data-a="amap" alt="Alara Village amenities map"></div><div class="amov" id="amStage"><img id="amImg" alt=""><div id="amYT"></div><video id="amVid" playsinline disablepictureinpicture controlslist="nodownload noplaybackrate noremoteplayback" preload="auto"></video><span class="amt"><i class="ano" id="amNo">Amenities</i><b id="amN"></b></span><iframe id="amFr" title="Amenity video" allow="autoplay; fullscreen" allowfullscreen></iframe><button type="button" class="amx" id="amX" aria-label="Back to map">&times;</button><button type="button" class="amp" id="amPlay" aria-label="Pause video"><svg class="i1" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><svg class="i2" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button><button type="button" class="amp ams" id="amSnd" aria-label="Turn sound off"><svg class="i1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m16 9 5 6M21 9l-5 6"/></svg><svg class="i2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg></button><div class="amb"><i id="amBar"></i></div></div></div>
    <div class="amback" id="amBkw"><button type="button" class="btn dk" id="amBk"><i></i>Back to amenities map</button></div>
    <p class="acal" id="amCal"></p>
   </div>
@@ -1027,7 +1042,7 @@ h1{font-size:clamp(52px,16vw,76px)}
    <ol class="dy-tl" id="dyTl" role="tablist" aria-label="Time of day"></ol>
    <div class="dy-stage rv">
     <div class="dy-frame sw" id="dyFrame">
-     <video id="dyVid" muted autoplay playsinline preload="auto"></video>
+     <video id="dyVid" playsinline disablepictureinpicture controlslist="nodownload noplaybackrate noremoteplayback" preload="auto"></video>
      <div id="dyYT"></div>
      <iframe id="dyFr" title="Alara Village video" allow="autoplay; fullscreen" allowfullscreen></iframe>
      <div class="dy-shade"></div><div class="dy-fade"></div>
@@ -1289,7 +1304,7 @@ function amYTplay(id,s,e){s=s||0;e=e||0;
  if(window.YT&&YT.Player)mk();
  else{window.onYouTubeIframeAPIReady=mk;if(!amYTs){amYTs=1;var sc=document.createElement("script");sc.src="https://www.youtube.com/iframe_api";document.head.appendChild(sc)}}
 }
-function amStop(){amTok++;clearTimeout(amFbT);amVid.pause();amVid.removeAttribute("src");amVid.load();amFr.src="about:blank";amStg.dataset.fb="";amStg.classList.remove("amplay","vid","yt","nf");if(amYTp&&amYTp.stopVideo)amYTp.stopVideo()}
+function amStop(){amTok++;clearTimeout(amFbT);amVid.pause();amVid.removeAttribute("src");amVid.load();amFr.src="about:blank";amStg.dataset.fb="";amStg.classList.remove("amplay","vid","yt","nf");amPb.classList.remove("alt");amBar.style.width="0%";if(amYTp&&amYTp.stopVideo)amYTp.stopVideo()}
 var amMsg=document.createElement("div");amMsg.className="amnf";amStg.appendChild(amMsg);
 var AMDIRS=["Videos/","videos/","","assets/videos/","assets/","Video/","video/"],AMEXTS=[".mp4",".MP4",".webm",".mov"],AMPREF=null;
 function amCands(a){if(a.m)return [a.m];var l=[];if(AMPREF)l.push(AMPREF.d+a.f+AMPREF.e);AMEXTS.forEach(function(e){AMDIRS.forEach(function(d){l.push(d+a.f+e)})});return l}
@@ -1298,18 +1313,30 @@ function amFall(t){if(t!==amTok)return;amVid.pause();amStg.classList.remove("amp
 function amMode(){
  amStop();var t=amTok,a=AM[amCur],c=amCands(a),k=0;
  if(a.yt){amYTplay(a.yt,0,0);return}
- amVid.muted=true;amVid.loop=false;amVid.preload="auto";amVid.onloadedmetadata=null;amVid.ontimeupdate=null;
+ amVid.muted=!amWant;amSetSnd();amVid.loop=false;amVid.preload="auto";amVid.onloadedmetadata=null;amVid.ontimeupdate=null;
  amVid.onended=function(){if(t===amTok)amBack()};
  amVid.onplaying=function(){if(t===amTok){clearTimeout(amFbT);amStg.classList.add("amplay");var u=(amVid.getAttribute("src")||""),m=u.match(/^(.*\/)?[^\/]+(\.[A-Za-z0-9]+)$/);if(m)AMPREF={d:m[1]||"",e:m[2]}}};
  function nx(){
   if(t!==amTok)return;
   if(k>=c.length){amFall(t);return}
   amVid.src=c[k++];
-  var pr=amVid.play();if(pr&&pr.catch)pr.catch(function(){})
+  amPlayTry(t)
  }
  amVid.onerror=function(){if(t===amTok)nx()};
  nx();
 }
+var amPb=$("amPlay"),amBar=$("amBar"),amSb=$("amSnd"),amWant=true,amAuto=false;
+function amSetSnd(){var on=!amVid.muted;amSb.classList.toggle("alt",on);amSb.setAttribute("aria-label",on?"Turn sound off":"Turn sound on")}
+/* sound on by default; if the browser blocks it, play muted and unmute on the visitor's next tap/click */
+function amPlayTry(t){var pr=amVid.play();if(pr&&pr.catch)pr.catch(function(e){if(t!==amTok)return;if(e&&e.name==="NotAllowedError"&&!amVid.muted){amVid.muted=true;amAuto=true;amSetSnd();var q=amVid.play();if(q&&q.catch)q.catch(function(){})}})}
+amSb.onclick=function(e){e.stopPropagation();amWant=amVid.muted;amAuto=false;amVid.muted=!amWant;amSetSnd()};
+["pointerdown","touchend","keydown","click"].forEach(function(ev){addEventListener(ev,function(){if(amAuto&&amWant){amAuto=false;amVid.muted=false;amSetSnd()}},true)});
+amPb.onclick=function(e){e.stopPropagation();if(amVid.paused){var q=amVid.play();if(q&&q.catch)q.catch(function(){})}else amVid.pause()};amPb.addEventListener("pointerdown",function(e){e.stopPropagation()});
+amVid.addEventListener("play",function(){amPb.classList.remove("alt");amPb.setAttribute("aria-label","Pause video")});
+amVid.addEventListener("pause",function(){if(!amVid.ended){amPb.classList.add("alt");amPb.setAttribute("aria-label","Play video")}});
+amVid.addEventListener("timeupdate",function(){if(amVid.duration)amBar.style.width=(amVid.currentTime/amVid.duration*100)+"%"});
+amVid.oncontextmenu=function(){return false};
+(function amtick(){if(amVid.duration&&!amVid.paused)amBar.style.width=(amVid.currentTime/amVid.duration*100)+"%";requestAnimationFrame(amtick)})();
 amFr.onload=function(){if(amStg.dataset.fb==="1"&&/drive\.google/.test(amFr.src))amStg.classList.add("vid")};
 var amMapEl=$("amMap"),amT;
 function amMark(i){document.querySelectorAll(".apin,.ach").forEach(function(e){var on=+e.dataset.i===i;e.classList.toggle("on",on);if(e.classList.contains("ach"))e.setAttribute("aria-pressed",on)})}
@@ -1639,7 +1666,7 @@ var D=[
  {yt:"",m:"Videos/night.mp4",id:"1NG83-q2jHM7QNg5NQr4C7kZPpQ4bWCo7",t:"8:00 PM",n:"Night",h:"Lights low, home glowing.",d:"When the day settles down, the village turns warm and quiet. This is the feeling of coming home.",c:"Goodnight, Alara",k:"#6f7fc4"}];
 var sec=g("day");if(!sec)return;
 var tl=g("dyTl"),fr=g("dyFrame"),vid=g("dyVid"),ifr=g("dyFr"),bar=g("dyBar"),pb=g("dyPlay"),sb=g("dySnd"),tx=g("dyTxt");
-var cur=-1,muted=true,userPaused=false,inView=false,started=false,tok=0,fbT=0,ready=false,atEnd=false,yp=null,ypT=0,ytS=0,pend=null;
+var cur=-1,muted=false,autoMuted=false,userPaused=false,inView=false,started=false,tok=0,fbT=0,ready=false,atEnd=false,yp=null,ypT=0,ytS=0,pend=null;
 function drv(id){return "https://drive.usercontent.google.com/download?id="+id+"&export=download&confirm=t"}
 function ytid(s){return s.replace(/.*(?:v=|youtu\.be\/|embed\/|shorts\/|live\/)([\w-]{11}).*/,"$1")}
 function next(){clearTimeout(fbT);bar.style.width="100%";fr.classList.add("xf");setTimeout(function(){go(cur<D.length-1?cur+1:0)},750)}
@@ -1669,7 +1696,7 @@ function tryPlay(){
  if(!vid.getAttribute("src"))return;
  var p=vid.play();
  if(p&&p.catch)p.catch(function(){
-  if(!vid.muted){setMuted(true)}
+  if(!vid.muted){setMuted(true);autoMuted=true}
   var q=vid.play();if(q&&q.catch)q.catch(function(){fr.classList.remove("sw","xf");userPaused=true;pb.classList.add("alt");pb.setAttribute("aria-label","Play video")})
  });
 }
@@ -1741,7 +1768,9 @@ pb.onclick=function(){
  if(!playing()){userPaused=false;pb.classList.remove("alt");pb.setAttribute("aria-label","Pause video");tryPlay()}
  else{userPaused=true;pb.classList.add("alt");pb.setAttribute("aria-label","Play video");pauseAll()}
 };
-sb.onclick=function(){setMuted(!muted);if(!muted&&!userPaused)tryPlay()};
+sb.onclick=function(){setMuted(!muted);autoMuted=false;if(!muted&&!userPaused)tryPlay()};
+["pointerdown","touchend","keydown","click"].forEach(function(ev){addEventListener(ev,function(){if(autoMuted){autoMuted=false;setMuted(false)}},true)});
+setMuted(false);
 var sx=0,sy=0;
 fr.addEventListener("touchstart",function(e){sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});
 fr.addEventListener("touchend",function(e){var dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;
