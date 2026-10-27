@@ -890,6 +890,20 @@ h1{font-size:clamp(52px,16vw,76px)}
 .dy-frame #dyYT{position:absolute;inset:0;width:100%;height:100%;border:0;display:none;pointer-events:none;background:#000}
 .dy-frame.yt #dyYT{display:block}
 .dy-frame.yt video{display:none}
+/* ===== A day at Alara: bigger video player ===== */
+.dy .wrap{width:min(1400px,94%)}
+.dy-grid{grid-template-columns:130px minmax(0,2.5fr) minmax(0,1fr);gap:44px}
+.dy-tl{height:min(520px,66vh)}
+.dy-txt h3{font-size:clamp(34px,3.2vw,50px)}
+.dy-stage::before{inset:20px -20px -20px 20px}
+@media(max-width:1100px){.dy-grid{grid-template-columns:110px minmax(0,2fr) minmax(0,1fr);gap:28px}}
+@media(max-width:860px){
+.dy .wrap{width:94%}
+.dy-grid{grid-template-columns:1fr;gap:26px}
+.dy-frame{aspect-ratio:16/10}
+.dy-stage::before{inset:12px -6px -12px 6px}
+.dy-txt h3{font-size:clamp(32px,9vw,44px)}
+}
 </style>
 </head>
 <body>
@@ -1228,18 +1242,15 @@ $("pmap").onclick=$("pmapbtn").onclick=function(){openLB("map",MAPID,"Alara Vill
 var AMAPID="1NLIDkAQBBFK5qwVnYYiK4oRglJW3qZum";
 /* x / y = pin position on the map in % (open the page with #calibrate on the end of the URL, pick an amenity, click the map to place its pin, then paste the numbers here) */
 /* per amenity you can add yt:"YouTubeVideoID" (autoplays reliably) or m:"https://your-host/file.mp4". Without them it tries Google Drive. */
-/* ONE video for every amenity. Each amenity plays CLIP seconds starting at its "s" (start second), then returns to the map. */
-var VID="1LmfihKKdJb-ckpFfyOKorZZIIK_YptT5",CLIP=7;
-/* Paste your unlisted YouTube link or video ID here. When filled, YouTube is used instead of Google Drive. */
-var YTID="";
-var AMP4="Videos/amenities.mp4";
+/* Each amenity has its own video file. Files live in the Videos folder of your Vercel project: Videos/entrancegate.mp4, midpark1.mp4, forestpark.mp4, midpark2.mp4, tricourt.mp4, clubhousepool.mp4 (names are case-sensitive, keep them lowercase). */
+var AMDIR="Videos/",AMEXT=".mp4";
 var AM=[
- {n:"Entrance Gate",x:33.6,y:77.9,i:"1CmNg6Ryv9uqtOi1Ixydo4FZlBySiJ7S2",s:0},
- {n:"Midpark 1",x:24.7,y:38.9,i:"16jT3oQavP2V3BIoQ-2yT71vY2BBBIEnE",s:8},
- {n:"Forest Park",x:52.6,y:19.8,i:"1OdKP6sE9K9EcDLm0gCoZUzURlgIUJAD8",s:16},
- {n:"Midpark 2",x:54.9,y:61.5,i:"1k1lOL_mVxn6gO1nwTc9ZZfWZ9VrwrSA8",s:24},
- {n:"Play Area Tri-Court",x:68.2,y:34.3,i:"1QG5vjA7PDox947cEnBI-a4kDgyZF7XwY",s:32},
- {n:"Clubhouse Pool",x:71.8,y:53.4,i:"1Nfktz3Z0VzAk26naqFiEHaxMOmGnmlkZ",s:40}];
+ {n:"Entrance Gate",x:33.6,y:77.9,i:"1CmNg6Ryv9uqtOi1Ixydo4FZlBySiJ7S2",f:"entrancegate"},
+ {n:"Midpark 1",x:24.7,y:38.9,i:"16jT3oQavP2V3BIoQ-2yT71vY2BBBIEnE",f:"midpark1"},
+ {n:"Forest Park",x:52.6,y:19.8,i:"1OdKP6sE9K9EcDLm0gCoZUzURlgIUJAD8",f:"forestpark"},
+ {n:"Midpark 2",x:54.9,y:61.5,i:"1k1lOL_mVxn6gO1nwTc9ZZfWZ9VrwrSA8",f:"midpark2"},
+ {n:"Play Area Tri-Court",x:68.2,y:34.3,i:"1QG5vjA7PDox947cEnBI-a4kDgyZF7XwY",f:"tricourt"},
+ {n:"Clubhouse Pool",x:71.8,y:53.4,i:"1Nfktz3Z0VzAk26naqFiEHaxMOmGnmlkZ",f:"clubhousepool"}];
 var amCur=-1,amStg=$("amStage"),amImg=$("amImg"),amFr=$("amFr");
 loadAsset("amap",AMAPID);
 AM.forEach(function(a,i){loadAsset("am-"+i,a.i)});
@@ -1261,20 +1272,18 @@ function amYTplay(id,s,e){s=s||0;e=e||0;
  else{window.onYouTubeIframeAPIReady=mk;if(!amYTs){amYTs=1;var sc=document.createElement("script");sc.src="https://www.youtube.com/iframe_api";document.head.appendChild(sc)}}
 }
 function amStop(){amTok++;clearTimeout(amFbT);amVid.pause();amVid.removeAttribute("src");amVid.load();amFr.src="about:blank";amStg.dataset.fb="";amStg.classList.remove("vp","vid","yt");if(amYTp&&amYTp.stopVideo)amYTp.stopVideo()}
-function amFall(t){if(t!==amTok)return;amVid.pause();amStg.classList.remove("vp");amStg.dataset.fb="1";amFr.src="https://drive.google.com/file/d/"+VID+"/preview"}
-/* tries to autoplay the video file straight from Drive; if Drive blocks it, falls back to the Drive player */
+function amFall(t){if(t!==amTok)return;amVid.pause();amStg.classList.remove("vp");console.warn("Amenity video not found: "+amVid.getAttribute("src"))}
+/* plays the amenity's own MP4 from your project; if the file is missing, the amenity photo stays on screen */
 function amMode(){
- amStop();var t=amTok,a=AM[amCur],s=a.s||0;
- if(a.yt||YTID){amYTplay(a.yt||YTID,s,s+CLIP);return}
- amVid.muted=true;
- amVid.onloadedmetadata=function(){try{amVid.currentTime=s}catch(x){}};
- amVid.src=a.m||AMP4||"https://drive.usercontent.google.com/download?id="+VID+"&export=download&confirm=t";
- amVid.ontimeupdate=function(){if(t===amTok&&amVid.currentTime>=s+CLIP)amBack()};
+ amStop();var t=amTok,a=AM[amCur];
+ if(a.yt){amYTplay(a.yt,0,0);return}
+ amVid.muted=true;amVid.loop=false;amVid.onloadedmetadata=null;amVid.ontimeupdate=null;
+ amVid.src=a.m||(AMDIR+a.f+AMEXT);
  amVid.onended=function(){if(t===amTok)amBack()};
  amVid.onplaying=function(){if(t===amTok){clearTimeout(amFbT);amStg.classList.add("vp")}};
  amVid.onerror=function(){amFall(t)};
  var pr=amVid.play();if(pr&&pr.catch)pr.catch(function(){amVid.muted=true;var q=amVid.play();if(q&&q.catch)q.catch(function(){})});
- amFbT=setTimeout(function(){amFall(t)},10000);
+ amFbT=setTimeout(function(){if(t===amTok&&amVid.paused&&!amVid.currentTime)amFall(t)},25000);
 }
 amFr.onload=function(){if(amStg.dataset.fb==="1"&&/drive\.google/.test(amFr.src))amStg.classList.add("vid")};
 var amMapEl=$("amMap"),amT;
