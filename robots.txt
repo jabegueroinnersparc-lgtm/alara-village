@@ -1,6 +1,24 @@
 User-agent: *
 Allow: /
 
+# Google (search, images and favicons)
+User-agent: Googlebot
+Allow: /
+User-agent: Googlebot-Image
+Allow: /
+
+# Social link previews
+User-agent: facebookexternalhit
+Allow: /
+User-agent: Twitterbot
+Allow: /
+User-agent: LinkedInBot
+Allow: /
+User-agent: TelegramBot
+Allow: /
+User-agent: WhatsApp
+Allow: /
+
 # AI search and answer engines
 User-agent: GPTBot
 Allow: /
