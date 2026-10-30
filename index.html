@@ -2330,7 +2330,7 @@ var tl=g("dyTl"),fr=g("dyFrame"),vid=g("dyVid"),ifr=g("dyFr"),bar=g("dyBar"),pb=
 var pfv=document.createElement("video");pfv.muted=true;pfv.preload="auto";pfv.setAttribute("playsinline","");pfv.onerror=function(){};var pfK="";
 function vsrc(x,m){return(m&&x.m)?x.m.replace(/^(.*\/)?([^\/]+)$/,function(_,d,f){return(d||"")+"mobile/"+f}):x.m}
 function prefetchAt(i){if(SAVE)return;var x=D[(i+D.length)%D.length];if(!x||!x.m)return;var u=vsrc(x,MOB);if(pfK===u)return;pfK=u;pfv.src=u;try{pfv.load()}catch(e){}}
-var cur=-1,muted=false,autoMuted=false,userPaused=false,inView=false,started=false,tok=0,fbT=0,ready=false,atEnd=false,yp=null,ypT=0,ytS=0,pend=null;
+var cur=-1,muted=false,autoMuted=false,userPaused=false,blocked=false,inView=false,started=false,tok=0,fbT=0,ready=false,atEnd=false,yp=null,ypT=0,ytS=0,pend=null;
 function drv(id){return "https://drive.usercontent.google.com/download?id="+id+"&export=download&confirm=t"}
 function ytid(s){return s.replace(/.*(?:v=|youtu\.be\/|embed\/|shorts\/|live\/)([\w-]{11}).*/,"$1")}
 function next(){clearTimeout(fbT);bar.style.width="100%";fr.classList.add("xf");setTimeout(function(){go(cur<D.length-1?cur+1:0)},750)}
@@ -2361,7 +2361,7 @@ function tryPlay(){
  var p=vid.play();
  if(p&&p.catch)p.catch(function(){
   if(!vid.muted){setMuted(true);autoMuted=true}
-  var q=vid.play();if(q&&q.catch)q.catch(function(){fr.classList.remove("sw","xf");userPaused=true;pb.classList.add("alt");pb.setAttribute("aria-label","Play video")})
+  var q=vid.play();if(q&&q.catch)q.catch(function(){fr.classList.remove("sw","xf");blocked=true;pb.classList.add("alt");pb.setAttribute("aria-label","Play video")})
  });
 }
 function fallback(t){
@@ -2408,7 +2408,11 @@ function go(i){
  fbT=setTimeout(function(){fallback(t)},x.m?30000:9000);
 }
 vid.addEventListener("playing",function(){if(isYT())return;ready=true;clearTimeout(fbT);fr.classList.remove("sw","xf")});
-vid.addEventListener("loadeddata",function(){if(!isYT()&&(!inView||userPaused))fr.classList.remove("sw","xf")});
+vid.addEventListener("loadeddata",function(){if(!isYT()&&(!inView||userPaused||blocked))fr.classList.remove("sw","xf")});
+/* autoplay worked: clear the "blocked" state and show the pause icon */
+vid.addEventListener("playing",function(){blocked=false;pb.classList.remove("alt");pb.setAttribute("aria-label","Pause video")});
+/* if the browser pauses the video by itself (e.g. unmute without a tap), resume it muted */
+vid.addEventListener("pause",function(){setTimeout(function(){if(inView&&!userPaused&&!atEnd&&!vid.ended&&vid.paused&&vid.getAttribute("src")&&!fr.classList.contains("fb"))tryPlay()},120)});
 (function tick(){
  if(!fr.classList.contains("xf")){
   if(!isYT()&&vid.duration)bar.style.width=(vid.currentTime/vid.duration*100)+"%";
@@ -2441,8 +2445,18 @@ pb.onclick=function(){
  else{userPaused=true;pb.classList.add("alt");pb.setAttribute("aria-label","Play video");pauseAll()}
 };
 sb.onclick=function(){setMuted(!muted);autoMuted=false;if(!muted&&!userPaused)tryPlay()};
-["pointerdown","touchend","keydown","click"].forEach(function(ev){addEventListener(ev,function(){if(autoMuted){autoMuted=false;setMuted(false)}},true)});
-setMuted(false);
+/* unmute (or retry a blocked autoplay) only on a real tap/click, never on a scroll gesture */
+["pointerup","touchend","keydown","click"].forEach(function(ev){addEventListener(ev,function(){
+ var act=!navigator.userActivation||navigator.userActivation.isActive;
+ if(!act)return;
+ if(autoMuted){autoMuted=false;setMuted(false);if(vid.paused&&!userPaused)setTimeout(tryPlay,60)}
+ else if(blocked&&inView&&!userPaused){blocked=false;tryPlay()}
+},true)});
+/* phones and tablets start muted so autoplay is allowed without any tap */
+var TOUCHDEV=matchMedia("(hover:none)").matches||MOB;
+if(TOUCHDEV){setMuted(true);autoMuted=true;vid.setAttribute("muted","")}else setMuted(false);
+/* hovering (desktop) or touching the section also starts the video if it is not playing yet */
+["pointerenter","touchstart"].forEach(function(ev){sec.addEventListener(ev,function(){if(started&&!userPaused&&!atEnd&&!playing()){inView=true;tryPlay()}},{passive:true})});
 var sx=0,sy=0;
 fr.addEventListener("touchstart",function(e){sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});
 fr.addEventListener("touchend",function(e){var dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;
@@ -2451,7 +2465,7 @@ new IntersectionObserver(function(es){es.forEach(function(e){
  inView=e.isIntersecting;
  if(inView){if(!started){started=true;go(0)}else tryPlay()}
  else pauseAll();
-})},{threshold:.35}).observe(g("dyFrame"));
+})},{threshold:.2}).observe(g("dyFrame"));
 document.addEventListener("visibilitychange",function(){if(document.hidden)pauseAll();else tryPlay()});
 })();
 
