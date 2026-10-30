@@ -1334,6 +1334,7 @@ h1,.h1{font-size:clamp(38px,11.5vw,56px)}
 @media(max-width:860px){
 .dy .wrap{width:94%}
 .dy-grid{grid-template-columns:1fr;gap:26px}
+.dy-tl{height:auto;min-height:0;align-content:start;align-items:start}
 .dy-frame{aspect-ratio:16/10}
 .dy-stage::before{inset:12px -6px -12px 6px}
 .dy-txt h3{font-size:clamp(32px,9vw,44px)}
@@ -1462,9 +1463,16 @@ h1,.h1{font-size:clamp(38px,11.5vw,56px)}
 .agt-box img:not([src]){min-height:0}
 .agt-t{align-self:center}
 @media(max-width:860px){
-.agt-g{align-items:start}
-.agt-img{max-width:440px;width:100%;margin:0 auto;min-height:0}
+.agt-g{grid-template-columns:minmax(0,1fr);gap:52px;align-items:start;width:min(1160px,90%)}
+.agt-img{max-width:420px;width:100%;margin:0 auto;min-height:0;align-self:start}
+.agt-img::before{inset:14px -10px -14px 14px}
 .agt-box{height:auto;min-height:0;aspect-ratio:4/5}
+.agt-t{align-self:start;width:100%}
+.agt-t h2{font-size:clamp(32px,9vw,44px);overflow-wrap:anywhere}
+.agt-role{font-size:21px;margin-bottom:20px}
+.agt-t p.agp{font-size:16px;line-height:1.7;max-width:none}
+.agt-t blockquote{font-size:21px;max-width:none}
+.agt-areas li{font-size:12.5px;padding:6px 13px}
 }
 
 /* ===== premium FAQ ===== */
@@ -1874,7 +1882,10 @@ $("srows").innerHTML=STORY.map(function(x,i){
 STORY.forEach(function(x,i){loadAsset("st-"+i,x.id)});
 /* meet the agent */
 loadAsset("agent","19UTNcF08Z8IZCVGVBQQ17o5UuXutn-cR");
-new IntersectionObserver(function(es,o){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("on");o.unobserve(e.target)}})},{threshold:.12}).observe($("agent"));
+new IntersectionObserver(function(es,o){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("on");o.unobserve(e.target)}})},{threshold:0,rootMargin:"0px 0px -8% 0px"}).observe($("agent"));
+/* safety net: never leave the agent section hidden (tall mobile layouts) */
+setTimeout(function(){var a=$("agent");if(a&&!a.classList.contains("on")){var r=a.getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0)a.classList.add("on")}},2500);
+addEventListener("scroll",function(){var a=$("agent");if(a&&!a.classList.contains("on")){var r=a.getBoundingClientRect();if(r.top<innerHeight*.9&&r.bottom>0)a.classList.add("on")}},{passive:true});
 
 var sio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("on");sio.unobserve(e.target)}})},{threshold:.2});
 var srows=document.querySelectorAll(".srow");
