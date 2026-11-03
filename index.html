@@ -479,6 +479,9 @@ header.small{padding:12px 0;background:rgba(11,22,16,.84);backdrop-filter:blur(1
 .btn::before{content:"";position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);transition:left .7s var(--ease)}
 .btn:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(224,184,98,.35)}
 .btn:hover::before{left:130%}
+.btn.cta-free{white-space:nowrap;animation:ctaGlow 3.8s ease-in-out infinite;will-change:transform,box-shadow}
+.btn.cta-free:hover{animation-play-state:paused}
+@keyframes ctaGlow{0%,100%{box-shadow:0 8px 22px rgba(224,184,98,.18)}50%{box-shadow:0 12px 30px rgba(224,184,98,.42);transform:translateY(-2px)}}
 .btn:disabled{opacity:.7;cursor:wait;transform:none;box-shadow:none}
 .btn.line{background:rgba(10,20,15,.35);color:#fff;border-color:rgba(255,255,255,.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
 .btn.line:hover{background:var(--gold);color:var(--forest);border-color:var(--gold)}
@@ -623,6 +626,7 @@ nav.open{transform:none}
 .lgrid{gap:36px}.ph{height:250px}.map{height:320px}
 .cb{padding:26px}
 .btn{padding:15px 24px}
+.btn.cta-free{font-size:clamp(9.5px,2.6vw,11.5px);letter-spacing:clamp(.08em,1.1vw,.2em);padding-inline:clamp(17px,5vw,24px)}
 }
 @media(max-width:420px){.acts .btn{width:100%;justify-content:center}}
 /* amenities map */
@@ -1675,7 +1679,7 @@ h1,.h1{font-size:clamp(38px,11.5vw,56px)}
    <p class="mt fx" id="mt" style="--d:.55s"></p>
    <p class="md fx" id="md" style="--d:.7s"></p>
    <div class="acts fx" id="acts" style="--d:.85s">
-    <a href="#visit" class="btn line" id="inq"><i></i><span id="inqt">Book a site visit</span></a>
+    <a href="#visit" class="btn line cta-free" id="inq"><i></i><span id="inqt">Get My Free Computation</span></a>
     <a href="#models" class="btn line"><i></i>All house models</a>
    </div>
   </div>
@@ -1700,7 +1704,7 @@ h1,.h1{font-size:clamp(38px,11.5vw,56px)}
   <h2 class="rv">Moments that make a house a home</h2>
   <p class="lead rv">Beyond floor plans and lot sizes, this is what we are really building: the everyday moments that make a place yours.</p>
   <div id="srows"></div>
-  <div class="send rv"><a href="#visit" class="btn"><i style="background:var(--forest)"></i>Book a site visit</a></div>
+  <div class="send rv"><a href="#visit" class="btn cta-free"><i style="background:var(--forest)"></i>Get My Free Computation</a></div>
  </div></section>
 
  <section class="models" id="models"><div class="wrap">
@@ -1724,7 +1728,7 @@ h1,.h1{font-size:clamp(38px,11.5vw,56px)}
     <li><b>02</b><div><h4>Find your spot</h4><p>Think about which part of the village suits your family, then tell our team and we will point it out on your visit.</p></div></li>
     <li><b>03</b><div><h4>Walk it with us</h4><p>Our sales team will go through the map with you on site and answer questions about the village and the four house models.</p></div></li>
    </ul>
-   <div class="acts"><button class="btn" type="button" id="pmapbtn"><i style="background:var(--forest)"></i>View full map</button><a href="#visit" class="btn dk"><i></i>Book a site visit</a></div>
+   <div class="acts"><button class="btn" type="button" id="pmapbtn"><i style="background:var(--forest)"></i>View full map</button><a href="#visit" class="btn dk cta-free"><i></i>Get My Free Computation</a></div>
   </div>
  </div></section>
 
@@ -1813,7 +1817,7 @@ h1,.h1{font-size:clamp(38px,11.5vw,56px)}
    <p class="agp ag" style="--i:4">With experience in property operations, client coordination, and real estate consultations, Charlene is committed to helping Filipino families, first-time homebuyers, and property investors find the right property that matches their lifestyle, needs, and budget. Through personalized guidance, transparent property information, and assistance with available financing options such as Pag-IBIG and bank financing, she makes the homebuying journey easier, more accessible, and more convenient.</p>
    <div class="agt-areas ag" style="--i:5"><small>Areas covered in Cavite</small><ul><li>Dasmariñas</li><li>Tanza</li><li>Naic</li><li>Noveleta</li><li>Imus</li><li>Bacoor</li></ul></div>
    <blockquote class="ag" style="--i:6">Her mission is simple: to help every Filipino family turn their dream of owning a home into reality while building a better future through smart property decisions.</blockquote>
-   <div class="acts ag" style="--i:7"><a href="#visit" class="btn"><i style="background:var(--forest)"></i>Book a site visit</a><a href="tel:+639169994124" class="btn dk"><i></i>Call Charlene</a></div>
+   <div class="acts ag" style="--i:7"><a href="#visit" class="btn cta-free"><i style="background:var(--forest)"></i>Get My Free Computation</a><a href="tel:+639169994124" class="btn dk"><i></i>Call Charlene</a></div>
    <div class="agt-con ag" style="--i:8"><small>Connect with Charlene</small><div class="agt-soc"><a class="cx" style="--j:0" href="https://www.facebook.com/CharleneDellosaProperties" target="_blank" rel="noopener noreferrer" aria-label="Facebook: Charlene Dellosa Properties" title="Charlene Dellosa Properties"><span class="ci" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></span><b>Facebook</b></a><a class="cx" style="--j:1" href="https://www.tiktok.com/@dynamicpropertyagent" target="_blank" rel="noopener noreferrer" aria-label="TikTok: @dynamicpropertyagent" title="@dynamicpropertyagent"><span class="ci" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg></span><b>TikTok</b></a><a class="cx" style="--j:2" href="https://www.instagram.com/chadlls13" target="_blank" rel="noopener noreferrer" aria-label="Instagram: @chadlls13" title="@chadlls13"><span class="ci" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><path d="M17.5 6.5h.01"/></svg></span><b>Instagram</b></a><a class="cx" style="--j:3" href="https://www.youtube.com/@chadellosa" target="_blank" rel="noopener noreferrer" aria-label="YouTube: @chadellosa" title="@chadellosa"><span class="ci" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><path d="M9.75 15.02 15.5 12 9.75 8.98z"/></svg></span><b>YouTube</b></a></div><div class="agt-ct"><a class="cx ph2" style="--j:4" href="tel:+639169994124" aria-label="Call +63 916 999 4124"><span class="ci" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span><span><small>Call or text</small><b>+639169994124</b></span></a><a class="cx" style="--j:5" href="mailto:dellosacharlene1317@gmail.com" aria-label="Email dellosacharlene1317@gmail.com"><span class="ci" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg></span><span><small>Email</small><b>dellosacharlene1317@gmail.com</b></span></a></div></div>
   </div>
  </div></section>
@@ -1824,7 +1828,7 @@ h1,.h1{font-size:clamp(38px,11.5vw,56px)}
    <p class="kick rv">Questions</p>
    <h2 class="rv" id="faq-h">Alara Village by Charlene Dellosa: quick answers</h2>
    <p class="lead rv">The essentials about Alara Village: models, amenities, how to book a visit and who to talk to.</p>
-   <div class="faq-help rv"><b>Still have questions?</b><p>Charlene is happy to walk you through the models, financing and available lots.</p><a href="#visit" class="btn"><i style="background:var(--forest)"></i>Book a site visit</a></div>
+   <div class="faq-help rv"><b>Still have questions?</b><p>Charlene is happy to walk you through the models, financing and available lots.</p><a href="#visit" class="btn cta-free"><i style="background:var(--forest)"></i>Get My Free Computation</a></div>
   </div>
   <div class="fl" id="fl">
    <details class="fq" style="--n:0"><summary><h3>What is Alara Village?</h3><span class="ico" aria-hidden="true"></span></summary><div class="fa-w"><p class="fa">Alara Village is a garden community of two-storey homes in Cavite, Philippines, made for families to grow. It offers four house models, Veta, Zila, Raya and Yana, from 85 to 130 sqm. Every home has a lanai and two parking slots.</p></div></details>
@@ -1839,7 +1843,7 @@ h1,.h1{font-size:clamp(38px,11.5vw,56px)}
   <p class="kick rv">Book a visit</p>
   <h2 class="rv">Visit Alara Village</h2>
   <p class="lead rv">Leave your details and we will confirm your visit schedule.</p>
-  <div class="rv"><button class="btn" type="button" id="vopen"><i style="background:var(--forest)"></i>Book a site visit</button><small></small></div>
+  <div class="rv"><button class="btn cta-free" type="button" id="vopen"><i style="background:var(--forest)"></i>Get My Free Computation</button><small></small></div>
  </div></section>
 </main>
 
@@ -1876,7 +1880,7 @@ h1,.h1{font-size:clamp(38px,11.5vw,56px)}
   </div>
  </div>
 </div>
-<button class="fab" id="fab" type="button"><i style="width:7px;height:7px;background:var(--forest);transform:rotate(45deg)"></i>Book a visit</button>
+<button class="fab cta-free" id="fab" type="button"><i style="width:7px;height:7px;background:var(--forest);transform:rotate(45deg)"></i>Get My Free Computation</button>
 <div class="done" id="done" role="dialog" aria-modal="true" aria-labelledby="dt1">
  <div class="dbox">
   <svg viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="25"/><path d="M14 27l8 8 16-16"/></svg>
@@ -2161,7 +2165,7 @@ function go(i,user){
  slides.forEach(function(s,k){s.classList.toggle("on",k===cur)});
  ths.forEach(function(t,k){t.classList.remove("on");if(k===cur){void t.offsetWidth;t.classList.add("on")}});
  $("eb").textContent="Model 0"+(cur+1)+" \u00b7 "+m.a+" sqm";
- $("mt").textContent=m.t;$("md").textContent=m.d;$("inqt").textContent="Inquire about "+m.n;
+ $("mt").textContent=m.t;$("md").textContent=m.d;$("inqt").textContent="Get My Free Computation";
  $("cur").textContent="0"+(cur+1);
  setTitle(m.n);replay();
  clearTimeout(timer);timer=setTimeout(function(){go(cur+1)},DUR);
