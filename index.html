@@ -1711,6 +1711,155 @@ h1,.h1{font-size:clamp(38px,11.5vw,56px)}
 @media(max-width:420px){.fin-bar b{font-size:10.5px}.fin-bars{gap:8px}.fin-sl b{font-size:21px}}
 @media(prefers-reduced-motion:reduce){.mp.on .fin-split i,.mp.on .fin-bar i{animation:none}}
 
+/* ===== lead magnet: buyer's kit ===== */
+.kit{position:relative;overflow:hidden;color:#fff;background:radial-gradient(900px 480px at 88% 8%,rgba(224,184,98,.2),transparent 62%),radial-gradient(700px 520px at 0 100%,rgba(138,165,143,.18),transparent 60%),linear-gradient(135deg,#0b1610,#14291f)}
+.kit::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:60px 60px;-webkit-mask-image:radial-gradient(70% 80% at 70% 40%,#000,transparent);mask-image:radial-gradient(70% 80% at 70% 40%,#000,transparent)}
+.kit .wrap{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(40px,6vw,90px);align-items:center}
+.kit .kick{color:var(--gold)}
+.kit h2{color:#fff;text-wrap:balance}
+.kit .lead{color:#b9c8bd}
+.kit-l{list-style:none;display:grid;gap:18px;margin:34px 0 38px}
+.kit-l li{display:grid;grid-template-columns:34px 1fr;gap:16px;align-items:start}
+.kit-l li>span{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;border:1px solid rgba(224,184,98,.6);background:rgba(224,184,98,.1);color:var(--gold)}
+.kit-l svg{width:16px;height:16px}
+.kit-l b{display:block;font:600 22px/1.2 var(--serif);color:#fff}
+.kit-l small{display:block;margin-top:2px;font-size:14px;color:#a9bbae}
+.kit-a{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.kit-a>span{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#a9bbae}
+.kv{position:relative;width:min(400px,100%);aspect-ratio:4/5;margin:0 auto}
+.kb{position:absolute;inset:0;border-radius:14px;border:1px solid rgba(224,184,98,.5)}
+.kb1{transform:rotate(-8deg) translate(-7%,2%);background:linear-gradient(160deg,#1d3a2c,#0f1f17);opacity:.75}
+.kb2{transform:rotate(5deg) translate(6%,1%);background:linear-gradient(160deg,#2c4a3a,#14291f);opacity:.9}
+.kmain{position:absolute;inset:0;display:flex;flex-direction:column;padding:34px 30px 30px;border-radius:14px;border:1px solid var(--gold);background:linear-gradient(160deg,#fcf8ea 0%,#f2e8cc 100%);color:var(--forest);box-shadow:0 44px 90px rgba(0,0,0,.55);animation:kfloat 7s ease-in-out infinite}
+@keyframes kfloat{50%{transform:translateY(-10px) rotate(.6deg)}}
+.kmk{font:700 11px var(--sans);letter-spacing:.32em;text-transform:uppercase;color:#a07f35}
+.kmt{display:block;margin-top:10px;font:500 clamp(40px,4.6vw,54px)/1 var(--serif);color:var(--forest)}
+.kml{display:block;width:56px;height:2px;margin:20px 0 14px;background:linear-gradient(90deg,var(--gold),#f3d894)}
+.kms{font:italic 500 19px var(--serif);color:#5b6b61;margin-bottom:22px}
+.kmain ol{list-style:none;display:grid;gap:0;margin-top:auto}
+.kmain li{display:flex;align-items:baseline;gap:14px;padding:13px 0;border-top:1px dashed rgba(15,31,23,.22);font:600 17px var(--serif);color:var(--forest)}
+.kmain li b{font:400 13px var(--display);color:transparent;-webkit-text-stroke:1px #a07f35}
+.kseal{position:absolute;right:-14px;top:-18px;display:grid;place-content:center;width:84px;height:84px;border-radius:50%;text-align:center;background:var(--gold);color:var(--forest);box-shadow:0 14px 30px rgba(0,0,0,.4),inset 0 0 0 4px rgba(255,255,255,.35);transform:rotate(12deg)}
+.kseal b{font:600 24px/1 var(--serif)}
+.kseal small{font:700 9px var(--sans);letter-spacing:.18em;text-transform:uppercase}
+/* popup */
+.km{position:fixed;inset:0;z-index:125;display:grid;place-items:center;padding:24px;background:rgba(6,14,10,.74);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);opacity:0;visibility:hidden;transition:opacity .5s,visibility .5s}
+.km.on{opacity:1;visibility:visible}
+.kp{position:relative;width:min(560px,100%);max-height:min(92svh,860px);overflow-y:auto;overscroll-behavior:contain;background:#fff;border-radius:16px;box-shadow:0 50px 120px rgba(0,0,0,.55),0 0 0 1px rgba(224,184,98,.4);opacity:0;transform:translateY(50px) scale(.95);transition:transform .8s var(--ease),opacity .6s}
+.km.on .kp{opacity:1;transform:none}
+.km[data-s="3"] .kp{width:min(640px,100%)}
+.khd{position:relative;padding:30px 40px 26px;color:#fff;background:radial-gradient(420px 200px at 100% 0,rgba(224,184,98,.25),transparent 70%),linear-gradient(135deg,#0b1610,#1d3a2c)}
+.kk{font:700 10.5px var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.khd h3{font:500 clamp(28px,3.4vw,36px)/1.12 var(--serif);padding-right:36px}
+.kdots{display:flex;gap:6px;margin-top:20px}
+.kdots i{flex:1;height:3px;border-radius:3px;background:rgba(255,255,255,.2);transition:background .5s}
+.kdots i.on{background:var(--gold)}
+.kx{position:absolute;top:14px;right:14px;z-index:5;width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.08);font-size:24px;line-height:1;color:#fff;cursor:pointer;transition:all .4s var(--ease)}
+.kx:hover{background:var(--gold);border-color:var(--gold);color:var(--forest);transform:rotate(90deg)}
+.kbd{padding:28px 40px 34px}
+.ks{display:none}
+.km[data-s="1"] .ks1,.km[data-s="2"] .ks2,.km[data-s="3"] .ks3{display:block;animation:rise .7s var(--ease) both}
+.ksub{color:#5b6b61;font-size:15px;margin-bottom:20px}
+.kcs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.kc{display:flex;flex-direction:column;align-items:center;gap:2px;padding:14px 6px;border:1px solid #d3dcd2;border-radius:12px;background:#fafbf8;color:var(--ink);cursor:pointer;transition:all .4s var(--ease)}
+.kc b{font:400 15px var(--display);text-transform:uppercase;letter-spacing:.04em}
+.kc small{font-size:11px;color:#6a796f;letter-spacing:.06em}
+.kc em{margin-top:4px;font:700 10.5px var(--sans);font-style:normal;letter-spacing:.06em;color:#a07f35}
+.kc:hover{border-color:var(--gold);transform:translateY(-2px)}
+.kc.on{background:var(--forest);border-color:var(--forest);color:#fff;box-shadow:0 12px 26px rgba(15,31,23,.28)}
+.kc.on small{color:#b9c8bd}.kc.on em{color:var(--gold)}
+.klot{display:none;align-items:center;gap:8px;flex-wrap:wrap;margin-top:14px}
+.klot span{font:700 10.5px var(--sans);letter-spacing:.2em;text-transform:uppercase;color:#a07f35;margin-right:4px}
+.klot button{min-height:38px;padding:6px 18px;border:1px solid #d3dcd2;border-radius:30px;background:#fff;font:600 13px var(--sans);color:var(--ink);cursor:pointer;transition:all .35s var(--ease)}
+.klot button.on{background:var(--forest);border-color:var(--forest);color:#fff}
+.kest{margin:22px 0 20px;padding:18px 20px;border-radius:12px;border:1px solid rgba(160,127,53,.4);background:linear-gradient(135deg,#fffdf4,#faf3dc)}
+.kest small{display:block;font:700 10.5px var(--sans);letter-spacing:.2em;text-transform:uppercase;color:#a07f35}
+.kest b{display:block;font:500 clamp(34px,4.4vw,44px)/1.1 var(--serif);font-variant-numeric:lining-nums tabular-nums;color:var(--forest)}
+.kest span{display:block;font-size:13px;color:#5b6b61}
+.kbk{margin:-4px 0 14px;padding:6px 0;border:0;background:none;font:700 11px var(--sans);letter-spacing:.16em;text-transform:uppercase;color:#a07f35;cursor:pointer}
+.kbk:hover{color:var(--forest)}
+.km form{max-width:none;margin-top:6px;gap:14px}
+.km .f input{height:58px;padding:24px 16px 8px 50px;border-radius:10px;background:#fafbf8}
+.km .f label{left:50px;top:17px}
+.km .f input:focus{background:#fff;border-color:var(--gold);box-shadow:0 0 0 4px rgba(224,184,98,.2)}
+.km .f input:focus+label{color:#a07f35}
+.km .f::after{content:"";position:absolute;left:14px;right:14px;bottom:0;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--gold),#f3d894);transform:scaleX(0);transition:transform .5s var(--ease)}
+.km .f:focus-within::after{transform:scaleX(1)}
+.kpv{text-align:center;font-size:12.5px;color:#7a887f;margin-top:-2px}
+/* result */
+.kr-for{font:italic 500 19px var(--serif);color:#5b6b61;margin-bottom:14px}
+.kr-for b{font-style:normal;color:var(--forest)}
+.kr-hero{padding:24px 26px;border-radius:14px;color:#fff;border:1px solid rgba(224,184,98,.45);background:radial-gradient(360px 200px at 100% 0,rgba(224,184,98,.22),transparent 70%),linear-gradient(135deg,#0b1610,#1d3a2c)}
+.kr-hero small{display:block;font:700 10.5px var(--sans);letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.65)}
+.kr-hero .kr-m{margin-bottom:12px;color:var(--gold)}
+.kr-hero b{display:block;margin-top:4px;font:500 clamp(36px,6vw,52px)/1.05 var(--serif);font-variant-numeric:lining-nums tabular-nums;background:linear-gradient(120deg,#f6dfa0,#e0b862 55%,#fff3cf);-webkit-background-clip:text;background-clip:text;color:transparent}
+.kr-g{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0 22px}
+.kr-g div{padding:14px 16px;border:1px solid #e3e9e1;border-radius:12px;background:#fafbf8}
+.kr-g small{display:block;font:700 9.5px var(--sans);letter-spacing:.16em;text-transform:uppercase;color:#6a796f}
+.kr-g b{display:block;font:600 22px/1.2 var(--serif);font-variant-numeric:lining-nums tabular-nums;color:var(--forest)}
+.kr-h4{font:700 10.5px var(--sans);letter-spacing:.22em;text-transform:uppercase;color:#a07f35;margin-bottom:6px}
+.kr-t{list-style:none;margin-bottom:20px}
+.kr-t li{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px dashed #d3dcd2}
+.kr-t li>span{display:flex;align-items:center;gap:10px;font:600 20px var(--serif);color:var(--forest)}
+.kr-t em{font:700 9.5px var(--sans);font-style:normal;letter-spacing:.12em;text-transform:uppercase;color:var(--forest);background:var(--gold);border-radius:20px;padding:3px 9px}
+.kr-t li>i{flex:1}
+.kr-t b{font:600 22px var(--serif);font-variant-numeric:lining-nums tabular-nums;color:var(--forest);white-space:nowrap}
+.kr-t b small{font:500 12px var(--sans);color:#6a796f}
+.kdet{border:1px solid #e3e9e1;border-radius:12px;background:#fafbf8;margin-bottom:22px}
+.kdet summary{position:relative;list-style:none;cursor:pointer;padding:15px 48px 15px 18px;font:600 19px var(--serif);color:var(--forest)}
+.kdet summary::-webkit-details-marker{display:none}
+.kdet summary::after{content:"+";position:absolute;right:18px;top:50%;margin-top:-13px;font:300 26px/26px var(--sans);color:#a07f35;transition:transform .4s var(--ease)}
+.kdet[open] summary::after{transform:rotate(45deg)}
+.kdet ul{list-style:none;padding:0 18px 4px}
+.kdet li{position:relative;padding:8px 0 8px 22px;font-size:14.5px;color:#3c4d43;border-top:1px dashed #d3dcd2}
+.kdet li::before{content:"";position:absolute;left:3px;top:17px;width:7px;height:7px;background:var(--gold);transform:rotate(45deg)}
+.kdet p{padding:6px 18px 16px;font-size:12.5px;color:#6a796f}
+.kact{display:flex;gap:12px}
+.kact .btn{flex:1;justify-content:center}
+.kghost{background:transparent;color:var(--forest);border-color:var(--forest)}
+.kghost:hover{background:var(--forest);color:var(--gold);border-color:var(--forest)}
+.kfine{margin-top:16px;font-size:12px;line-height:1.55;color:#7a887f;text-align:center}
+/* teaser */
+.kt{position:fixed;left:22px;bottom:calc(22px + env(safe-area-inset-bottom,0px));z-index:58;display:flex;gap:14px;align-items:flex-start;width:min(350px,calc(100vw - 44px));padding:18px 40px 18px 18px;border-radius:14px;color:#fff;border:1px solid rgba(224,184,98,.55);background:radial-gradient(260px 140px at 100% 0,rgba(224,184,98,.2),transparent 70%),linear-gradient(135deg,#0b1610,#1d3a2c);box-shadow:0 24px 60px rgba(0,0,0,.45);opacity:0;visibility:hidden;transform:translateY(30px);transition:opacity .5s,transform .7s var(--ease),visibility .5s}
+.kt.show{opacity:1;visibility:visible;transform:none}
+.kti{flex:none;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--gold);color:var(--forest)}
+.kti svg{width:22px;height:22px}
+.kt b{display:block;font:600 22px/1.15 var(--serif)}
+.kt p{margin:2px 0 12px;font-size:13px;line-height:1.45;color:#b9c8bd}
+.kt .btn{padding:11px 20px;font-size:10.5px}
+.ktx{position:absolute;top:8px;right:8px;width:34px;height:34px;border:0;border-radius:50%;background:transparent;font-size:22px;line-height:1;color:rgba(255,255,255,.7);cursor:pointer}
+.ktx:hover{color:var(--gold)}
+@media(max-width:860px){
+.kit .wrap{grid-template-columns:1fr;gap:56px}
+.kv{width:min(300px,78%)}
+.kit-l{margin:28px 0 30px}
+.kit-l b{font-size:20px}
+.kit-a{gap:14px}.kit-a .btn{width:100%;justify-content:center}
+.km{padding:0;place-items:end center}
+.kp,.km[data-s="3"] .kp{width:100%;border-radius:22px 22px 0 0;transform:translateY(100%);opacity:1;max-height:94svh}
+.km.on .kp{transform:none}
+.khd{padding:24px 20px 20px}
+.kbd{padding:22px 20px calc(26px + env(safe-area-inset-bottom,0px))}
+.kx{top:12px;right:12px}
+.kcs{grid-template-columns:1fr 1fr}
+.kact{flex-direction:column}
+.kr-g b{font-size:19px}
+.kt{left:12px;right:12px;width:auto}
+body.kt-on .fab{opacity:0;visibility:hidden}
+.kr-t li>span{flex-direction:column;align-items:flex-start;gap:4px;font-size:19px;white-space:nowrap}
+.kr-t b{font-size:20px}
+.kr-g small{letter-spacing:.1em;font-size:9px}
+}
+@media(prefers-reduced-motion:reduce){.kmain{animation:none}.km[data-s] .ks{animation:none}}
+@media print{
+body.kprint>*:not(#km){display:none!important}
+body.kprint{overflow:visible!important}
+body.kprint #km{position:static!important;display:block;padding:0;opacity:1;visibility:visible;background:#fff;backdrop-filter:none;-webkit-backdrop-filter:none}
+body.kprint .kp{position:static;width:100%!important;max-height:none;overflow:visible;transform:none;opacity:1;box-shadow:none;border-radius:0}
+body.kprint .kx,body.kprint .kdots,body.kprint .kact{display:none!important}
+body.kprint .khd,body.kprint .kr-hero,body.kprint .kr-t em{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+
 /* ===== amenities: premium video cards ===== */
 .avhd{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:0 0 16px}
 .avhd b{display:flex;align-items:center;gap:12px;font:700 11px var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--moss)}
@@ -1841,6 +1990,32 @@ h1,.h1{font-size:clamp(38px,11.5vw,56px)}
   <p class="lead rv">Every model is a two-storey home with a lanai and two parking slots. Choose a model to see its full details and floor plan.</p>
   <div class="mtabs rv" id="mtabs" role="tablist" aria-label="House models"></div>
   <div class="mgrid" id="mgrid"></div>
+ </div></section>
+
+ <section class="kit" id="kit" aria-labelledby="kit-h"><div class="wrap">
+  <div class="kit-t">
+   <p class="kick rv">Free for every buyer</p>
+   <h2 class="rv" id="kit-h">Your free Alara Buyer&rsquo;s Kit</h2>
+   <p class="lead rv">See your exact monthly payment for the home you like in 30 seconds, plus the checklist families use to prepare for loan approval.</p>
+   <ul class="kit-l rv">
+    <li><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span><div><b>Your personal payment plan</b><small>Built around the model and lot size you choose</small></div></li>
+    <li><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span><div><b>Down payment schedule</b><small>Reservation fee and 24-month down payment</small></div></li>
+    <li><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span><div><b>Loan terms side by side</b><small>Monthly amortization from 5 to 20 years</small></div></li>
+    <li><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span><div><b>Bank approval checklist</b><small>The documents banks typically ask for</small></div></li>
+   </ul>
+   <div class="kit-a rv"><button class="btn cta-free" type="button" id="kopen"><i style="background:var(--forest)"></i>Get my free kit</button><span>Instant on screen &middot; No obligation</span></div>
+  </div>
+  <div class="kv rv" aria-hidden="true">
+   <i class="kb kb1"></i><i class="kb kb2"></i>
+   <div class="kmain">
+    <span class="kmk">Alara Village</span>
+    <b class="kmt">Buyer&rsquo;s Kit</b>
+    <span class="kml"></span>
+    <p class="kms">Prepared for you</p>
+    <ol><li><b>01</b>Monthly payment plan</li><li><b>02</b>Down payment schedule</li><li><b>03</b>Loan terms, 5 to 20 years</li><li><b>04</b>Approval checklist</li></ol>
+    <span class="kseal"><b>Free</b><small>for you</small></span>
+   </div>
+  </div>
  </div></section>
 
  <section class="plan" id="plan"><div class="wrap pgrid">
@@ -2007,6 +2182,41 @@ h1,.h1{font-size:clamp(38px,11.5vw,56px)}
    </form>
   </div>
  </div>
+</div>
+<div class="km" id="km" role="dialog" aria-modal="true" aria-labelledby="kt-h2" aria-hidden="true" data-s="1">
+ <div class="kp">
+  <button class="kx" type="button" id="kx" aria-label="Close">&times;</button>
+  <div class="khd"><p class="kk" id="kstep">Step 1 of 3</p><h3 id="kt-h2">Which home are you eyeing?</h3><div class="kdots" aria-hidden="true"><i class="on"></i><i></i><i></i></div></div>
+  <div class="kbd">
+   <div class="ks ks1">
+    <p class="ksub">Choose a model and we will build your numbers around it.</p>
+    <div class="kcs" id="kcs" role="group" aria-label="House model"></div>
+    <div class="klot" id="klot" role="group" aria-label="Lot size"></div>
+    <div class="kest"><small>Monthly payments from</small><b id="kest"></b><span>on a 20-year bank loan &middot; full breakdown in your kit</span></div>
+    <button class="btn vsub" type="button" id="knext"><i style="background:var(--forest)"></i>Continue</button>
+   </div>
+   <div class="ks ks2">
+    <button type="button" class="kbk" id="kback">&larr; Change home</button>
+    <p class="ksub">Your kit appears instantly on the next screen.</p>
+    <form id="kform" novalidate>
+     <div class="f"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-1a5 5 0 0 0-5-5H9a5 5 0 0 0-5 5v1"/><circle cx="12" cy="7" r="4"/></svg><input id="kn" placeholder=" " autocomplete="name" required><label for="kn">Full name</label></div>
+     <div class="f" id="kpf"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><input id="kph" type="tel" inputmode="tel" autocomplete="tel" maxlength="16" placeholder=" " required><label for="kph">Mobile number</label></div>
+     <p class="warn" id="kpw" role="alert"></p>
+     <div class="f"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><input id="kem" type="email" autocomplete="email" placeholder=" " required><label for="kem">Email address</label></div>
+     <input id="khp" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
+     <button class="btn vsub" type="submit"><i style="background:var(--forest)"></i>Unlock my free kit</button>
+     <p class="ok" id="kerr" role="alert"></p>
+     <p class="kpv">Your details stay private. Charlene may contact you about Alara Village.</p>
+    </form>
+   </div>
+   <div class="ks ks3" id="kres"></div>
+  </div>
+ </div>
+</div>
+<div class="kt" id="kt" role="complementary" aria-label="Free Buyer's Kit">
+ <button class="ktx" type="button" id="ktx" aria-label="Dismiss">&times;</button>
+ <span class="kti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5z"/><path d="M4 5.5v16M9 8h7M9 12h5"/></svg></span>
+ <div><b>Free Buyer&rsquo;s Kit</b><p>See your exact monthly payment in 30 seconds.</p><button class="btn" type="button" id="ktgo"><i style="background:var(--forest)"></i>Get it free</button></div>
 </div>
 <button class="fab cta-free" id="fab" type="button"><i style="width:7px;height:7px;background:var(--forest);transform:rotate(45deg)"></i>Get My Free Computation</button>
 <div class="done" id="done" role="dialog" aria-modal="true" aria-labelledby="dt1">
@@ -2543,6 +2753,110 @@ document.querySelectorAll('a[href="#visit"]').forEach(function(a){a.addEventList
 $("vopen").onclick=function(){openVM()};$("fab").onclick=function(){openVM()};
 addEventListener("scroll",function(){$("fab").classList.toggle("show",scrollY>innerHeight*.7&&!vm.classList.contains("on"))},{passive:true});
 vmSet("Raya");
+
+
+/* ===== lead magnet: buyer's kit ===== */
+var km=$("km"),kt=$("kt"),kM="veta",kL=0,kStep=1,kLastF=null,kUnlocked=false,kName="",kPhone="",kEmail="",ktTimer=false,ktExit=false;
+function sget(k){try{return sessionStorage.getItem(k)}catch(e){return null}}
+function sput(k,v){try{sessionStorage.setItem(k,v)}catch(e){}}
+function lget(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function lput(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function peso(v){return "₱"+v}
+function kMod(){return MODELS.filter(function(m){return m.k===kM})[0]}
+$("kcs").innerHTML=MODELS.map(function(m){var o=PRICES[m.k][0];return '<button type="button" class="kc" data-km="'+m.k+'" aria-pressed="false"><b>'+m.n+'</b><small>'+m.a+' sqm</small><em>from ₱'+(num(o.tcp)/1e6).toFixed(1)+'M</em></button>'}).join("");
+function kPick(k,l){
+ kM=k;kL=l||0;var P=PRICES[k];
+ document.querySelectorAll(".kc").forEach(function(b){var on=b.getAttribute("data-km")===k;b.classList.toggle("on",on);b.setAttribute("aria-pressed",on)});
+ $("klot").innerHTML=P.length>1?'<span>Lot size</span>'+P.map(function(x,i){return '<button type="button" data-l="'+i+'" class="'+(i===kL?"on":"")+'" aria-pressed="'+(i===kL)+'">'+x.lot+' sqm</button>'}).join(""):"";
+ $("klot").style.display=P.length>1?"flex":"none";
+ $("kest").textContent=peso(P[kL].y20);
+}
+var KT=["Which home are you eyeing?","Where should we send your kit?","Your kit is ready"];
+function kSet(n){
+ kStep=n;km.setAttribute("data-s",n);
+ $("kstep").textContent="Step "+n+" of 3";$("kt-h2").textContent=KT[n-1];
+ document.querySelectorAll(".kdots i").forEach(function(d,i){d.classList.toggle("on",i<n)});
+ km.querySelector(".kp").scrollTop=0;
+}
+function kOpen(){
+ kLastF=document.activeElement;
+ var cur=document.querySelector(".mp.on .fin");kPick(cur?cur.getAttribute("data-fk"):kM,0);
+ kSet(1);km.classList.add("on");km.setAttribute("aria-hidden","false");document.body.style.overflow="hidden";
+}
+function kClose(){
+ km.classList.remove("on");km.setAttribute("aria-hidden","true");document.body.style.overflow="";
+ if(kLastF&&kLastF.focus)try{kLastF.focus()}catch(x){}
+}
+$("kcs").addEventListener("click",function(e){var b=e.target.closest(".kc");if(b)kPick(b.getAttribute("data-km"),0)});
+$("klot").addEventListener("click",function(e){var b=e.target.closest("button");if(b)kPick(kM,+b.getAttribute("data-l"))});
+$("knext").onclick=function(){if(kUnlocked){kBuild();kSet(3)}else{kSet(2);if(matchMedia("(hover:hover)").matches)setTimeout(function(){$("kn").focus()},500)}};
+$("kback").onclick=function(){kSet(1)};
+$("kx").onclick=kClose;
+km.addEventListener("click",function(e){if(e.target===km)kClose()});
+addEventListener("keydown",function(e){if(e.key==="Escape"&&km.classList.contains("on"))kClose()});
+$("kopen").onclick=kOpen;$("ktgo").onclick=kOpen;
+document.querySelectorAll('a[href="#kit"]').forEach(function(a){a.addEventListener("click",function(e){e.preventDefault();kOpen()})});
+
+var kpIn=$("kph"),kpf=$("kpf"),kpw=$("kpw"),kerr=$("kerr");
+function kWarn(msg){kpw.textContent=msg;kpf.classList.add("bad");kpf.classList.remove("shake");void kpf.offsetWidth;kpf.classList.add("shake")}
+function kClear(){kpf.classList.remove("bad","shake")}
+kpIn.addEventListener("input",function(){var r=/[^0-9+\-()\s]/g;if(r.test(kpIn.value)){kpIn.value=kpIn.value.replace(/[^0-9+\-()\s]/g,"");kWarn("Numbers only, please. Letters and symbols are not allowed.")}else kClear()});
+function kMsg(t){kerr.classList.add("err");kerr.textContent=t;kerr.style.display="block"}
+$("kform").onsubmit=function(e){
+ e.preventDefault();kerr.style.display="none";kerr.classList.remove("err");
+ var nm=$("kn").value.trim(),raw=kpIn.value.trim(),dg=raw.replace(/\D/g,""),em=$("kem").value.trim();
+ if(nm.length<2){kMsg("Please enter your name.");$("kn").focus();return}
+ if(/[A-Za-z]/.test(raw)||/[^0-9+\-()\s]/.test(raw)){kWarn("Numbers only, please. Letters and symbols are not allowed.");kpIn.focus();return}
+ if(dg.length<10||dg.length>13){kWarn("Please enter a valid mobile number (10 to 13 digits).");kpIn.focus();return}
+ kClear();
+ if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)){kMsg("Please enter a valid email address.");$("kem").focus();return}
+ var btn=$("kform").querySelector('button[type="submit"]'),html=btn.innerHTML,m=kMod(),o=PRICES[kM][kL];
+ var data={id:Date.now()+"-"+Math.random().toString(36).slice(2,8),name:nm,phone:raw,email:em,model:m.n,date:"",hp:$("khp").value,source:location.href.split("#")[0]+"#buyers-kit",magnet:"Buyer's Kit",lot:o.lot+" sqm"};
+ btn.disabled=true;btn.textContent="Preparing your kit...";
+ send(data,function(){
+  btn.disabled=false;btn.innerHTML=html;
+  kName=nm;kPhone=raw;kEmail=em;kUnlocked=true;lput("alara_kit_done","1");
+  kBuild();kSet(3);ktSync();
+ },function(msg){
+  btn.disabled=false;btn.innerHTML=html;
+  if(msg&&/number/i.test(msg)){kWarn(msg);return}
+  kMsg(msg&&/email/i.test(msg)?msg:"Sorry, something went wrong. Please try again or call us.");
+ });
+};
+function kBuild(){
+ var o=PRICES[kM][kL],m=kMod();
+ var rows=TERMS.map(function(t){var lo=t[0]==="y20";return '<li><span>'+t[1].replace("yrs","years")+(lo?'<em>Lowest monthly</em>':'')+'</span><i></i><b>'+peso(o[t[0]])+' <small>/ month</small></b></li>'}).join("");
+ $("kres").innerHTML='<p class="kr-for">Prepared for <b></b></p>'
+ +'<div class="kr-hero"><small class="kr-m">'+m.n+' &middot; '+m.a+' sqm home &middot; '+o.lot+' sqm lot</small><small>Total contract price</small><b>'+peso(o.tcp)+'</b></div>'
+ +'<div class="kr-g"><div><small>Reservation fee</small><b>'+peso(o.rf)+'</b></div><div><small>Down payment &middot; 20%</small><b>'+peso(o.dp)+'</b></div><div><small>Monthly down payment &middot; 24 mos</small><b>'+peso(o.mdp)+'</b></div><div><small>Bank loan &middot; 80%</small><b>'+peso(o.loan)+'</b></div></div>'
+ +'<p class="kr-h4">Monthly amortization at 7% prequalifying rate</p><ul class="kr-t">'+rows+'</ul>'
+ +'<details class="kdet"><summary>Documents banks typically ask for</summary><ul><li>Two valid government-issued IDs</li><li>Tax Identification Number (TIN)</li><li>Proof of income: certificate of employment and recent payslips, or business permit and ITR if self-employed</li><li>Proof of billing or address</li><li>Recent bank statements</li></ul><p>This is a typical list only. Charlene will confirm exactly what applies to your case.</p></details>'
+ +'<div class="kact"><button class="btn" type="button" id="kvisit"><i style="background:var(--forest)"></i>Book my site visit</button><button class="btn kghost" type="button" id="kpdf">Save as PDF</button></div>'
+ +'<p class="kfine">Indicative figures for announcement purposes only. Prevailing bank rates at the time of loan application will be availed.</p>';
+ $("kres").querySelector(".kr-for b").textContent=kName;
+}
+$("kres").addEventListener("click",function(e){
+ var b=e.target.closest("button");if(!b)return;
+ if(b.id==="kvisit"){kClose();$("n").value=kName;$("p").value=kPhone;$("em").value=kEmail;setTimeout(function(){openVM(kMod().n)},350)}
+ if(b.id==="kpdf"){
+  var d=$("kres").querySelector(".kdet"),was=d.open;d.open=true;document.body.classList.add("kprint");
+  var done=function(){document.body.classList.remove("kprint");d.open=was;removeEventListener("afterprint",done)};
+  addEventListener("afterprint",done);setTimeout(function(){window.print()},80);
+ }
+});
+/* teaser: appears after the section is passed, after 30s, or on exit intent. Once dismissed it stays away for the session. */
+function ktSync(){
+ var r=$("kit").getBoundingClientRect(),past=r.bottom<0,inView=r.top<innerHeight*.85&&r.bottom>innerHeight*.15;
+ var want=!sget("kt_x")&&!lget("alara_kit_done")&&!km.classList.contains("on")&&!vm.classList.contains("on")&&!inView&&scrollY>innerHeight*.8&&(past||ktTimer||ktExit);
+ kt.classList.toggle("show",want);document.body.classList.toggle("kt-on",want);
+}
+$("ktx").onclick=function(){sput("kt_x","1");ktSync()};
+addEventListener("scroll",ktSync,{passive:true});
+setTimeout(function(){ktTimer=true;ktSync()},30000);
+document.addEventListener("mouseout",function(e){if(!e.relatedTarget&&e.clientY<=0&&matchMedia("(hover:hover)").matches){ktExit=true;ktSync()}});
+new MutationObserver(ktSync).observe(vm,{attributes:true,attributeFilter:["class"]});
+new MutationObserver(ktSync).observe(km,{attributes:true,attributeFilter:["class"]});
+kPick("veta",0);
 
 /* ===== vicinity map + nearby places ===== */
 var VICID="1L1jMgUZ5Vrhq1Mzxa7J9Hvpwu70CvSRX";
