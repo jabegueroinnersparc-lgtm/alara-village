@@ -1274,6 +1274,69 @@ h1,.h1{font-size:clamp(38px,11.5vw,56px)}
 @media(min-width:561px) and (max-width:860px){.pcm-am{grid-template-columns:repeat(4,1fr)}}
 @media(max-width:560px){.pcm{padding:16px 14px 14px}.pcm-rows div{font-size:13.5px}.pcm-am b{font-size:19px}}
 
+/* ===== computation panel: keep financing text clear over the model showcase ===== */
+.pcm{
+ position:relative;
+ z-index:3;
+ isolation:isolate;
+ margin-top:30px;
+ padding:24px 22px 20px;
+ overflow:hidden;
+ background:#fffdf7!important;
+ background-image:none!important;
+ border:1px solid rgba(160,127,53,.58);
+ border-top:4px solid var(--gold);
+ border-radius:12px;
+ box-shadow:0 18px 36px rgba(15,31,23,.12),0 0 0 6px rgba(255,255,255,.72);
+}
+.minfo{background:#fff!important;background-image:none!important}
+.pcm::before{
+ content:"";
+ position:absolute;
+ inset:0 0 auto 0;
+ height:92px;
+ z-index:-1;
+ background:linear-gradient(135deg,rgba(224,184,98,.18),transparent 72%);
+ pointer-events:none;
+}
+.pcm-h{padding-bottom:14px;border-bottom:1px solid rgba(160,127,53,.24)}
+.pcm-h h4{color:var(--forest);font-size:24px}
+.pcm-h span{background:#fff;border-color:rgba(160,127,53,.62);color:#846526}
+.pcm-lots>span,.pcm-tcp span,.pcm-rows dt,.pcm-am small{color:#46584d}
+.pcm-lots button{box-shadow:0 2px 0 rgba(15,31,23,.04)}
+.pcm-tcp{border-color:#d5ded1}
+.pcm-tcp b{color:var(--forest);font-weight:600}
+.pcm-rows div{border-color:#d5ded1}
+.pcm-rows dd,.pcm-am b{color:var(--forest)}
+.pcm-sub{color:#846526}
+.pcm-am div{background:#f8fbf5;border-color:#cbd8c9;box-shadow:0 4px 12px rgba(15,31,23,.05)}
+.pcm-am em{color:#66756b}
+.pcm-note{color:#52645a}
+.pcm-note i{color:#78877d}
+@media(max-width:860px){
+ .pcm{margin-top:26px;box-shadow:0 14px 28px rgba(15,31,23,.1),0 0 0 4px rgba(255,255,255,.72)}
+}
+@media(max-width:560px){
+ .pcm{margin-top:22px;padding:19px 15px 16px;border-radius:10px}
+ .pcm-h{align-items:flex-start;margin-bottom:12px}
+ .pcm-h h4{font-size:21px}
+ .pcm-h span{font-size:9px;padding:5px 9px}
+ .pcm-lots{gap:7px;margin-bottom:12px}
+ .pcm-lots button{min-height:36px;padding:7px 12px}
+ .pcm-tcp{padding:11px 0}
+ .pcm-tcp b{font-size:26px}
+ .pcm-rows div{gap:10px;padding:8px 0;font-size:13px}
+ .pcm-rows dt{max-width:62%;line-height:1.3}
+ .pcm-rows dd{font-size:13px}
+ .pcm-sub{margin:14px 0 9px;font-size:9.5px;letter-spacing:.12em}
+ .pcm-am{gap:7px}
+ .pcm-am div{padding:9px 4px}
+ .pcm-am small{font-size:9px;letter-spacing:.08em}
+ .pcm-am b{font-size:18px}
+ .pcm-am em{font-size:9px}
+ .pcm-note{font-size:11px;line-height:1.45}
+}
+
 /* ===== A day at Alara: timeline + auto-playing videos ===== */
 @property --dyc{syntax:"<color>";inherits:true;initial-value:#e0b862}
 .dy{position:relative;overflow:hidden;color:#fff;background:var(--forest);background:radial-gradient(900px 520px at 80% 8%,color-mix(in srgb,var(--dyc) 24%,transparent),transparent 62%),radial-gradient(700px 480px at 0 100%,rgba(138,165,143,.16),transparent 60%),var(--forest);transition:--dyc 1.4s var(--ease)}
@@ -1911,7 +1974,7 @@ MODELS.forEach(function(m){
  (function t(){
   if(n>=list.length)return;
   var u=list[n++],im=new Image();
-  im.onload=function(){document.querySelectorAll('[data-k="'+m.k+'"]').forEach(function(e){e.style.backgroundImage='url("'+u+'"),linear-gradient(135deg,'+m.g+')'})};
+  im.onload=function(){document.querySelectorAll('[data-k="'+m.k+'"]:not(.pcm)').forEach(function(e){e.style.backgroundImage='url("'+u+'"),linear-gradient(135deg,'+m.g+')'})};
   im.onerror=t;im.src=u;
  })();
 });
