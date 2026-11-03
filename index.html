@@ -1244,6 +1244,36 @@ h1,.h1{font-size:clamp(38px,11.5vw,56px)}
 .mx::after{inset:10px}
 }
 
+/* ===== sample computation (house model description) ===== */
+.pcm{margin:0 0 26px;padding:20px 20px 18px;background:linear-gradient(180deg,#fff,var(--mist));border:1px solid rgba(160,127,53,.4);border-radius:8px}
+.pcm-h{display:flex;justify-content:space-between;align-items:center;gap:8px 12px;flex-wrap:wrap;margin-bottom:14px}
+.pcm-h h4{font-family:var(--serif);font-size:22px;font-weight:600;line-height:1.2}
+.pcm-h span{font:700 10px var(--sans);letter-spacing:.18em;text-transform:uppercase;color:#a07f35;border:1px solid rgba(160,127,53,.45);border-radius:30px;padding:5px 12px;background:#fff;white-space:nowrap}
+.pcm-lots{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.pcm-lots>span{font:700 10.5px var(--sans);letter-spacing:.18em;text-transform:uppercase;color:#6a796f;margin-right:2px}
+.pcm-lots button{min-height:38px;padding:7px 16px;border:1px solid #d9e2d6;background:#fff;border-radius:30px;font:600 12.5px var(--sans);color:var(--ink);cursor:pointer;transition:all .3s var(--ease)}
+.pcm-lots button:hover{border-color:var(--gold)}
+.pcm-lots button.on{background:var(--forest);border-color:var(--forest);color:#fff}
+.pcm-tcp{display:flex;justify-content:space-between;align-items:baseline;gap:6px 12px;flex-wrap:wrap;padding:12px 0;border-top:1px solid #e3e9e1;border-bottom:1px solid #e3e9e1}
+.pcm-tcp span{font:700 10.5px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:#6a796f}
+.pcm-tcp b{font:500 clamp(26px,7vw,32px)/1.1 var(--serif);color:var(--moss);font-variant-numeric:tabular-nums}
+.pcm-rows{margin:0}
+.pcm-rows div{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:9px 0;border-bottom:1px dashed #d9e2d6;font-size:14px}
+.pcm-rows dt{color:#5b6b61;line-height:1.35}
+.pcm-rows dd{margin:0;font-weight:600;color:var(--moss);text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.pcm-sub{margin:16px 0 10px;font:700 10.5px/1.5 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:#a07f35}
+.pcm-am{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.pcm-am div{background:#fff;border:1px solid #e3e9e1;border-radius:6px;padding:10px 8px;text-align:center;transition:transform .4s var(--ease),border-color .3s}
+.pcm-am div:hover{transform:translateY(-3px);border-color:var(--gold)}
+.pcm-am small{display:block;font:700 10.5px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:#6a796f}
+.pcm-am b{display:block;margin-top:3px;font:500 21px/1.15 var(--serif);color:var(--moss);font-variant-numeric:tabular-nums}
+.pcm-am em{display:block;font:normal 10.5px var(--sans);color:#8a978e}
+.pcm-note{margin-top:14px;font-size:12px;line-height:1.55;color:#6a796f}
+.pcm-note i{display:block;margin-top:4px;font-style:italic;color:#8a978e}
+.mp.on .minfo>*:nth-child(11){animation-delay:.80s}
+@media(min-width:561px) and (max-width:860px){.pcm-am{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:560px){.pcm{padding:16px 14px 14px}.pcm-rows div{font-size:13.5px}.pcm-am b{font-size:19px}}
+
 /* ===== A day at Alara: timeline + auto-playing videos ===== */
 @property --dyc{syntax:"<color>";inherits:true;initial-value:#e0b862}
 .dy{position:relative;overflow:hidden;color:#fff;background:var(--forest);background:radial-gradient(900px 520px at 80% 8%,color-mix(in srgb,var(--dyc) 24%,transparent),transparent 62%),radial-gradient(700px 480px at 0 100%,rgba(138,165,143,.16),transparent 60%),var(--forest);transition:--dyc 1.4s var(--ease)}
@@ -1829,6 +1859,28 @@ var DET={
   desc:"The 130 sqm signature residence is made for lasting stories—an expansive gathering level, guest and service spaces, and an upstairs family hall create comfort for larger and multi-generational households.",
   gf:["Porch","Lanai","Service Area","Storage","Living","Dining","L-Shaped Kitchen with 3-Seater Bar Counter","Guest Room","Maid’s Quarter &amp; T&amp;B"],
   sf:["Family Area","Master’s Bedroom with Main T&amp;B &amp; Balcony","2 Bedrooms","T&amp;B"],park:"2-Car Perpendicular Parking"}};
+var PRICES={
+ veta:[{lot:"121",tcp:"8,915,000",dp:"1,783,000",rf:"80,000",mdp:"70,958",loan:"7,132,000",y5:"141,222",y10:"82,809",y15:"64,104",y20:"55,294"}],
+ zila:[{lot:"121",tcp:"9,501,000",dp:"1,900,200",rf:"80,000",mdp:"75,842",loan:"7,600,800",y5:"150,505",y10:"88,252",y15:"68,318",y20:"58,929"}],
+ raya:[{lot:"121",tcp:"10,246,000",dp:"2,049,200",rf:"80,000",mdp:"82,050",loan:"8,196,800",y5:"162,306",y10:"95,172",y15:"73,675",y20:"63,550"}],
+ yana:[{lot:"160",tcp:"12,725,000",dp:"2,545,000",rf:"80,000",mdp:"102,708",loan:"10,180,000",y5:"201,576",y10:"118,198",y15:"91,501",y20:"78,925"},
+       {lot:"171",tcp:"13,125,000",dp:"2,625,000",rf:"80,000",mdp:"106,042",loan:"10,500,000",y5:"207,913",y10:"121,914",y15:"94,377",y20:"81,406"}]};
+function pcmFill(box,o){
+ box.querySelectorAll("[data-f]").forEach(function(e){e.textContent="\u20b1"+o[e.getAttribute("data-f")]});
+}
+function pcmHTML(k){
+ var P=PRICES[k],o=P[0],lots="";
+ if(P.length>1){lots='<div class="pcm-lots" role="group" aria-label="Lot size"><span>Lot size</span>'+P.map(function(x,i){return '<button type="button" data-o="'+i+'" aria-pressed="'+(i?'false':'true')+'" class="'+(i?'':'on')+'">'+x.lot+' sqm</button>'}).join("")+'</div>'}
+ function f(n){return '\u20b1'+o[n]}
+ function r(l,n){return '<div><dt>'+l+'</dt><dd data-f="'+n+'">'+f(n)+'</dd></div>'}
+ function c(l,n){return '<div><small>'+l+'</small><b data-f="'+n+'">'+f(n)+'</b><em>per month</em></div>'}
+ return '<div class="pcm" data-k="'+k+'"><div class="pcm-h"><h4>Sample computation</h4><span>Indicative price</span></div>'+lots
+ +'<div class="pcm-tcp"><span>Total contract price</span><b data-f="tcp">'+f("tcp")+'</b></div>'
+ +'<dl class="pcm-rows">'+r("Down payment (20%)","dp")+r("Reservation fee","rf")+r("Monthly down payment (24 mos)","mdp")+r("Loan amount (80%)","loan")+'</dl>'
+ +'<p class="pcm-sub">Bank financing \u00b7 monthly amortization at 7% prequalifying rate</p>'
+ +'<div class="pcm-am">'+c("5 yrs","y5")+c("10 yrs","y10")+c("15 yrs","y15")+c("20 yrs","y20")+'</div>'
+ +'<p class="pcm-note">For bank financing, the prevailing bank rates at the time of loan application will be availed.<i>For announcement purposes only.</i></p></div>';
+}
 function li(a){return a.map(function(x){return '<li>'+x+'</li>'}).join("")}
 $("mtabs").innerHTML=MODELS.map(function(m,i){return '<button type="button" class="mtab'+(i?'':' on')+'" role="tab" data-t="'+i+'" aria-selected="'+(i?'false':'true')+'"><b>'+m.n+'</b><small>'+m.a+' sqm</small></button>'}).join("");
 $("mgrid").innerHTML=MODELS.map(function(m,i){
@@ -1841,6 +1893,7 @@ $("mgrid").innerHTML=MODELS.map(function(m,i){
  +'<p class="mbest"><span>Ideal for</span>'+d.best+'</p>'
  +'<div class="mcols"><div><h4>Ground floor</h4><ul>'+li(d.gf)+'</ul></div><div><h4>Second floor</h4><ul>'+li(d.sf)+'</ul></div></div>'
  +'<p class="mpark"><b>Parking</b>'+d.park+'</p>'
+ +pcmHTML(m.k)
  +'<div class="acts"><button class="btn" type="button" data-m="'+m.n+'"><i style="background:var(--forest)"></i>Inquire about '+m.n+'</button><button class="btn dk" type="button" data-bp="'+m.k+'"><i></i>Enlarge floor plan</button></div>'
  +'<p class="mnote">T&amp;B = Toilet &amp; Bath</p></div></article>';
 }).join("");
@@ -1848,6 +1901,9 @@ var mtabs=document.querySelectorAll(".mtab"),mps=document.querySelectorAll(".mp"
 mtabs.forEach(function(t){t.onclick=function(){var i=+t.dataset.t;
  mtabs.forEach(function(x,k){x.classList.toggle("on",k===i);x.setAttribute("aria-selected",k===i?"true":"false")});
  mps.forEach(function(x,k){x.classList.toggle("on",k===i)})}});
+$("mgrid").addEventListener("click",function(e){var b=e.target.closest(".pcm-lots button");if(!b)return;
+ var box=b.closest(".pcm");box.querySelectorAll(".pcm-lots button").forEach(function(x){var on=x===b;x.classList.toggle("on",on);x.setAttribute("aria-pressed",on?"true":"false")});
+ pcmFill(box,PRICES[box.getAttribute("data-k")][+b.getAttribute("data-o")])});
 
 /* load photos from Google Drive (tries 2 URL styles, keeps gradient if both fail) */
 MODELS.forEach(function(m){
