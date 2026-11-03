@@ -1639,6 +1639,78 @@ h1,.h1{font-size:clamp(38px,11.5vw,56px)}
 }
 @media(prefers-reduced-motion:reduce){.fq,.fq .fa{transition:none;opacity:1;transform:none}}
 
+
+/* ===== financing panel: premium dark, full width under each model ===== */
+.mp .fin{grid-column:1/-1;position:relative;overflow:hidden;isolation:isolate;color:#fff;padding:46px clamp(26px,4.5vw,64px) 36px;border-top:1px solid rgba(224,184,98,.55);background:radial-gradient(720px 380px at 100% 0,rgba(224,184,98,.2),transparent 62%),radial-gradient(620px 420px at 0 100%,rgba(138,165,143,.18),transparent 60%),linear-gradient(135deg,#0c1912 0%,#14291f 100%)}
+.fin::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(75% 80% at 50% 30%,#000,transparent);mask-image:radial-gradient(75% 80% at 50% 30%,#000,transparent)}
+.fin-h{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.fin-k{display:flex;align-items:center;gap:14px;font:700 11px var(--sans);letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.fin-k::before{content:"";width:40px;height:1px;background:currentColor}
+.fin h4{font:500 clamp(30px,3.4vw,44px)/1.1 var(--serif);color:#fff}
+.fin-pill{font:700 10px var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(224,184,98,.55);border-radius:30px;padding:7px 15px;background:rgba(224,184,98,.08);white-space:nowrap}
+.fin-g{display:grid;grid-template-columns:1.1fr 1fr;margin-top:38px}
+.fin-l{padding-right:clamp(26px,4.5vw,64px)}
+.fin-r{padding-left:clamp(26px,4.5vw,64px);border-left:1px solid rgba(224,184,98,.3)}
+.fin-lb{font:700 10.5px var(--sans);letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.62);margin-bottom:12px}
+.fin-lots{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.fin-lots>span{font:700 10.5px var(--sans);letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.62);margin-right:4px}
+.fin-lots button{min-height:38px;padding:7px 18px;border:1px solid rgba(255,255,255,.3);border-radius:30px;background:transparent;color:#fff;font:600 12.5px var(--sans);cursor:pointer;transition:all .35s var(--ease)}
+.fin-lots button:hover{border-color:var(--gold)}
+.fin-lots button.on{background:var(--gold);border-color:var(--gold);color:var(--forest)}
+.fin-tcp{font:500 clamp(44px,5.6vw,76px)/1 var(--serif);font-variant-numeric:lining-nums tabular-nums;background:linear-gradient(120deg,#f6dfa0,#e0b862 55%,#fff3cf);-webkit-background-clip:text;background-clip:text;color:transparent;overflow-wrap:anywhere}
+.fin-split{display:flex;gap:4px;height:10px;margin:28px 0 14px}
+.fin-split i{display:block;border-radius:10px;transform-origin:left}
+.fin-split .d{flex:0 0 20%;background:linear-gradient(90deg,#f3d58f,var(--gold));box-shadow:0 0 16px rgba(224,184,98,.5)}
+.fin-split .l{flex:1;background:rgba(255,255,255,.2)}
+.mp.on .fin-split i{animation:finx 1.3s var(--ease) .4s backwards}
+@keyframes finx{from{transform:scaleX(0)}to{transform:none}}
+.fin-sl{display:grid;grid-template-columns:auto 1fr;gap:12px 40px;justify-content:start}
+.fin-sl small{display:block;font:700 10px var(--sans);letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:3px}
+.fin-sl b{font:500 clamp(22px,2.2vw,28px)/1.1 var(--serif);font-variant-numeric:lining-nums tabular-nums;color:#fff}
+.fin-sl>div:first-child b{color:var(--gold)}
+.fin-st{list-style:none;margin-top:30px;border-top:1px solid rgba(255,255,255,.14)}
+.fin-st li{display:grid;grid-template-columns:48px 1fr;gap:12px;align-items:center;padding:15px 0;border-bottom:1px dashed rgba(255,255,255,.16)}
+.fin-st li>b{font:400 22px var(--display);color:transparent;-webkit-text-stroke:1px var(--gold)}
+.fin-st h5{font:600 20px/1.2 var(--serif);color:#fff}
+.fin-st p{font-size:14px;color:rgba(255,255,255,.72);font-variant-numeric:tabular-nums}
+.fin-st p span{color:var(--gold);font-weight:700}
+.fin-seg{display:flex;gap:4px;padding:4px;border:1px solid rgba(224,184,98,.4);border-radius:40px;background:rgba(255,255,255,.04)}
+.fin-seg button{flex:1;min-height:42px;padding:0 8px;border:0;border-radius:40px;background:transparent;color:#fff;font:700 11px var(--sans);letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:all .4s var(--ease)}
+.fin-seg button:hover{color:var(--gold)}
+.fin-seg button.on{background:var(--gold);color:var(--forest);box-shadow:0 8px 22px rgba(224,184,98,.3)}
+.fin-mo{margin:28px 0 4px}
+.fin-mo>span{display:block;font:500 clamp(46px,5.4vw,72px)/1 var(--serif);font-variant-numeric:lining-nums tabular-nums;color:#fff;overflow-wrap:anywhere}
+.fin-mo small{display:block;margin-top:8px;font:700 11px var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.fin-bars{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;align-items:end;margin-top:26px;padding-top:22px;border-top:1px solid rgba(255,255,255,.14)}
+.fin-bar{display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:8px;height:190px;padding:0;border:0;background:none;color:#fff;font-family:inherit;cursor:pointer}
+.fin-bar b{font:600 12px var(--sans);font-variant-numeric:tabular-nums;color:rgba(255,255,255,.7);white-space:nowrap;transition:color .4s}
+.fin-bar i{display:block;width:100%;height:calc(var(--h,.5)*112px);border-radius:8px 8px 2px 2px;background:rgba(224,184,98,.26);transform-origin:bottom;transition:background .4s,box-shadow .4s,transform .5s var(--ease)}
+.fin-bar span{font:700 10.5px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6);transition:color .4s}
+.fin-bar:hover i{background:rgba(224,184,98,.5);transform:translateY(-3px)}
+.fin-bar.on i{background:linear-gradient(180deg,#f6dfa0,var(--gold));box-shadow:0 0 22px rgba(224,184,98,.55)}
+.fin-bar.on b,.fin-bar.on span{color:var(--gold)}
+.mp.on .fin-bar i{animation:finup 1s var(--ease) backwards}
+.mp.on .fin-bar:nth-child(1) i{animation-delay:.35s}.mp.on .fin-bar:nth-child(2) i{animation-delay:.45s}.mp.on .fin-bar:nth-child(3) i{animation-delay:.55s}.mp.on .fin-bar:nth-child(4) i{animation-delay:.65s}
+@keyframes finup{from{transform:scaleY(0)}to{transform:none}}
+.fin-ft{display:flex;align-items:center;justify-content:space-between;gap:28px;margin-top:34px;padding-top:24px;border-top:1px solid rgba(255,255,255,.14)}
+.fin-note{max-width:620px;font-size:12px;line-height:1.6;color:rgba(255,255,255,.6)}
+.fin-note i{display:block;margin-top:3px;font-style:italic;color:rgba(255,255,255,.45)}
+.fin-ft .btn{flex:none}
+@media(max-width:860px){
+.mp .fin{padding:34px 20px 26px}
+.fin-g{grid-template-columns:1fr;margin-top:28px}
+.fin-l{padding-right:0;padding-bottom:30px}
+.fin-r{padding-left:0;border-left:0;padding-top:30px;border-top:1px solid rgba(224,184,98,.3)}
+.fin-sl{grid-template-columns:1fr 1fr;gap:12px 18px}
+.fin-seg button{padding:0 2px;letter-spacing:.08em;font-size:10.5px}
+.fin-bar{height:170px}
+.fin-bar i{height:calc(var(--h,.5)*96px)}
+.fin-ft{flex-direction:column;align-items:stretch;gap:20px}
+.fin-ft .btn{justify-content:center}
+}
+@media(max-width:420px){.fin-bar b{font-size:10.5px}.fin-bars{gap:8px}.fin-sl b{font-size:21px}}
+@media(prefers-reduced-motion:reduce){.mp.on .fin-split i,.mp.on .fin-bar i{animation:none}}
+
 /* ===== amenities: premium video cards ===== */
 .avhd{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:0 0 16px}
 .avhd b{display:flex;align-items:center;gap:12px;font:700 11px var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--moss)}
@@ -1988,21 +2060,44 @@ var PRICES={
  raya:[{lot:"121",tcp:"10,246,000",dp:"2,049,200",rf:"80,000",mdp:"82,050",loan:"8,196,800",y5:"162,306",y10:"95,172",y15:"73,675",y20:"63,550"}],
  yana:[{lot:"160",tcp:"12,725,000",dp:"2,545,000",rf:"80,000",mdp:"102,708",loan:"10,180,000",y5:"201,576",y10:"118,198",y15:"91,501",y20:"78,925"},
        {lot:"171",tcp:"13,125,000",dp:"2,625,000",rf:"80,000",mdp:"106,042",loan:"10,500,000",y5:"207,913",y10:"121,914",y15:"94,377",y20:"81,406"}]};
+var TERMS=[["y5","5 yrs"],["y10","10 yrs"],["y15","15 yrs"],["y20","20 yrs"]];
+function num(v){return +String(v).replace(/,/g,"")}
+function pcmTerm(box,t,instant){
+ var o=PRICES[box.getAttribute("data-fk")][+box.getAttribute("data-o")],el=box.querySelector("[data-mo]"),to=num(o[t]),from=+(el.getAttribute("data-v")||to);
+ box.setAttribute("data-term",t);
+ box.querySelectorAll(".fin-seg button,.fin-bar").forEach(function(x){var on=x.getAttribute("data-t")===t;x.classList.toggle("on",on);x.setAttribute(x.classList.contains("fin-bar")?"aria-pressed":"aria-selected",on?"true":"false")});
+ box.querySelector("[data-yrs]").textContent=t.slice(1);
+ el.setAttribute("data-v",to);
+ var id=(el._r=(el._r||0)+1);
+ if(instant||from===to||matchMedia("(prefers-reduced-motion:reduce)").matches){el.textContent="₱"+to.toLocaleString("en-US");return}
+ var t0=performance.now();
+ (function f(n){if(el._r!==id)return;var p=Math.min((n-t0)/650,1),v=Math.round(from+(to-from)*(1-Math.pow(1-p,4)));el.textContent="₱"+v.toLocaleString("en-US");if(p<1)requestAnimationFrame(f)})(t0);
+}
 function pcmFill(box,o){
- box.querySelectorAll("[data-f]").forEach(function(e){e.textContent="\u20b1"+o[e.getAttribute("data-f")]});
+ box.querySelectorAll("[data-f]").forEach(function(e){e.textContent="₱"+o[e.getAttribute("data-f")]});
+ var mx=num(o.y5);
+ box.querySelectorAll(".fin-bar").forEach(function(x){x.style.setProperty("--h",Math.max(.16,num(o[x.getAttribute("data-t")])/mx).toFixed(3))});
+ pcmTerm(box,box.getAttribute("data-term"),true);
 }
 function pcmHTML(k){
- var P=PRICES[k],o=P[0],lots="";
- if(P.length>1){lots='<div class="pcm-lots" role="group" aria-label="Lot size"><span>Lot size</span>'+P.map(function(x,i){return '<button type="button" data-o="'+i+'" aria-pressed="'+(i?'false':'true')+'" class="'+(i?'':'on')+'">'+x.lot+' sqm</button>'}).join("")+'</div>'}
- function f(n){return '\u20b1'+o[n]}
- function r(l,n){return '<div><dt>'+l+'</dt><dd data-f="'+n+'">'+f(n)+'</dd></div>'}
- function c(l,n){return '<div><small>'+l+'</small><b data-f="'+n+'">'+f(n)+'</b><em>per month</em></div>'}
- return '<div class="pcm" data-k="'+k+'"><div class="pcm-h"><h4>Sample computation</h4><span>Indicative price</span></div>'+lots
- +'<div class="pcm-tcp"><span>Total contract price</span><b data-f="tcp">'+f("tcp")+'</b></div>'
- +'<dl class="pcm-rows">'+r("Down payment (20%)","dp")+r("Reservation fee","rf")+r("Monthly down payment (24 mos)","mdp")+r("Loan amount (80%)","loan")+'</dl>'
- +'<p class="pcm-sub">Bank financing \u00b7 monthly amortization at 7% prequalifying rate</p>'
- +'<div class="pcm-am">'+c("5 yrs","y5")+c("10 yrs","y10")+c("15 yrs","y15")+c("20 yrs","y20")+'</div>'
- +'<p class="pcm-note">For bank financing, the prevailing bank rates at the time of loan application will be availed.<i>For announcement purposes only.</i></p></div>';
+ var P=PRICES[k],o=P[0],nm=k.charAt(0).toUpperCase()+k.slice(1),lots="";
+ if(P.length>1){lots='<div class="fin-lots" role="group" aria-label="Lot size"><span>Lot size</span>'+P.map(function(x,i){return '<button type="button" data-o="'+i+'" aria-pressed="'+(i?'false':'true')+'" class="'+(i?'':'on')+'">'+x.lot+' sqm</button>'}).join("")+'</div>'}
+ function f(n){return '₱'+o[n]}
+ var seg=TERMS.map(function(x){return '<button type="button" role="tab" data-t="'+x[0]+'" aria-selected="false">'+x[1]+'</button>'}).join("");
+ var bars=TERMS.map(function(x){return '<button type="button" class="fin-bar" data-t="'+x[0]+'" aria-pressed="false" aria-label="'+x[1]+' monthly amortization"><b data-f="'+x[0]+'">'+f(x[0])+'</b><i></i><span>'+x[1]+'</span></button>'}).join("");
+ return '<div class="fin" data-fk="'+k+'" data-o="0" data-term="y10">'
+ +'<div class="fin-h"><div><p class="fin-k">Financing</p><h4>Sample computation</h4></div><span class="fin-pill">Indicative price</span></div>'
+ +'<div class="fin-g"><div class="fin-l">'+lots
+ +'<p class="fin-lb">Total contract price</p><p class="fin-tcp" data-f="tcp">'+f("tcp")+'</p>'
+ +'<div class="fin-split" role="img" aria-label="20 percent down payment, 80 percent bank loan"><i class="d"></i><i class="l"></i></div>'
+ +'<div class="fin-sl"><div><small>Down payment · 20%</small><b data-f="dp">'+f("dp")+'</b></div><div><small>Bank loan · 80%</small><b data-f="loan">'+f("loan")+'</b></div></div>'
+ +'<ol class="fin-st"><li><b>01</b><div><h5>Reservation fee</h5><p><span data-f="rf">'+f("rf")+'</span></p></div></li>'
+ +'<li><b>02</b><div><h5>Down payment in 24 months</h5><p><span data-f="mdp">'+f("mdp")+'</span> per month</p></div></li>'
+ +'<li><b>03</b><div><h5>Bank financing</h5><p>80% loan at a 7% prequalifying rate</p></div></li></ol></div>'
+ +'<div class="fin-r"><p class="fin-lb">Monthly amortization</p><div class="fin-seg" role="tablist" aria-label="Loan term">'+seg+'</div>'
+ +'<p class="fin-mo"><span data-mo data-v="'+num(o.y10)+'">'+f("y10")+'</span><small>per month · <span data-yrs>10</span> years</small></p>'
+ +'<div class="fin-bars">'+bars+'</div></div></div>'
+ +'<div class="fin-ft"><p class="fin-note">For bank financing, the prevailing bank rates at the time of loan application will be availed.<i>For announcement purposes only.</i></p><button class="btn" type="button" data-m="'+nm+'"><i style="background:var(--forest)"></i>Get my free computation</button></div></div>';
 }
 function li(a){return a.map(function(x){return '<li>'+x+'</li>'}).join("")}
 $("mtabs").innerHTML=MODELS.map(function(m,i){return '<button type="button" class="mtab'+(i?'':' on')+'" role="tab" data-t="'+i+'" aria-selected="'+(i?'false':'true')+'"><b>'+m.n+'</b><small>'+m.a+' sqm</small></button>'}).join("");
@@ -2016,17 +2111,23 @@ $("mgrid").innerHTML=MODELS.map(function(m,i){
  +'<p class="mbest"><span>Ideal for</span>'+d.best+'</p>'
  +'<div class="mcols"><div><h4>Ground floor</h4><ul>'+li(d.gf)+'</ul></div><div><h4>Second floor</h4><ul>'+li(d.sf)+'</ul></div></div>'
  +'<p class="mpark"><b>Parking</b>'+d.park+'</p>'
- +pcmHTML(m.k)
  +'<div class="acts"><button class="btn" type="button" data-m="'+m.n+'"><i style="background:var(--forest)"></i>Inquire about '+m.n+'</button><button class="btn dk" type="button" data-bp="'+m.k+'"><i></i>Enlarge floor plan</button></div>'
- +'<p class="mnote">T&amp;B = Toilet &amp; Bath</p></div></article>';
+ +'<p class="mnote">T&amp;B = Toilet &amp; Bath</p></div>'+pcmHTML(m.k)+'</article>';
 }).join("");
 var mtabs=document.querySelectorAll(".mtab"),mps=document.querySelectorAll(".mp");
 mtabs.forEach(function(t){t.onclick=function(){var i=+t.dataset.t;
  mtabs.forEach(function(x,k){x.classList.toggle("on",k===i);x.setAttribute("aria-selected",k===i?"true":"false")});
  mps.forEach(function(x,k){x.classList.toggle("on",k===i)})}});
-$("mgrid").addEventListener("click",function(e){var b=e.target.closest(".pcm-lots button");if(!b)return;
- var box=b.closest(".pcm");box.querySelectorAll(".pcm-lots button").forEach(function(x){var on=x===b;x.classList.toggle("on",on);x.setAttribute("aria-pressed",on?"true":"false")});
- pcmFill(box,PRICES[box.getAttribute("data-k")][+b.getAttribute("data-o")])});
+$("mgrid").addEventListener("click",function(e){
+ var b=e.target.closest(".fin-lots button,.fin-seg button,.fin-bar");if(!b)return;
+ var box=b.closest(".fin");
+ if(b.closest(".fin-lots")){
+  box.querySelectorAll(".fin-lots button").forEach(function(x){var on=x===b;x.classList.toggle("on",on);x.setAttribute("aria-pressed",on?"true":"false")});
+  box.setAttribute("data-o",b.getAttribute("data-o"));
+  pcmFill(box,PRICES[box.getAttribute("data-fk")][+b.getAttribute("data-o")]);
+ }else pcmTerm(box,b.getAttribute("data-t"));
+});
+document.querySelectorAll(".fin").forEach(function(box){pcmFill(box,PRICES[box.getAttribute("data-fk")][0])});
 
 /* load photos from Google Drive (tries 2 URL styles, keeps gradient if both fail) */
 MODELS.forEach(function(m){
