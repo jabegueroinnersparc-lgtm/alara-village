@@ -1866,37 +1866,64 @@ body.kprint .khd,body.kprint .kr-hero,body.kprint .kr-t em{-webkit-print-color-a
 .avhd b::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 5px rgba(224,184,98,.25);animation:blink 1.6s ease-in-out infinite}
 .avhd span{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#6a796f}
 .avhd .m{display:none}
-.avs{display:flex;flex-direction:column;gap:14px;margin:0 0 34px}
-.avc{position:relative;overflow:hidden;isolation:isolate;display:grid;grid-template-columns:clamp(190px,24%,270px) minmax(0,1fr) auto;align-items:center;gap:0 clamp(18px,2.4vw,34px);width:100%;padding:10px 28px 10px 10px;border:1px solid rgba(160,127,53,.45);border-radius:16px;background:linear-gradient(115deg,#1d3b2d 0%,#12281d 55%,#0c1a13 100%);color:#fff;text-align:left;cursor:pointer;box-shadow:0 14px 34px rgba(15,31,23,.14);transition:transform .6s var(--ease),box-shadow .6s var(--ease),border-color .4s}
-.avc::before{content:"";position:absolute;inset:0;z-index:0;background:radial-gradient(120% 160% at 100% 0%,rgba(224,184,98,.14),transparent 55%);pointer-events:none}
-.avth{position:relative;z-index:1;display:block;aspect-ratio:16/10;border-radius:10px;overflow:hidden;background:#0f1f17}
-.avth img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.03);transition:transform 1.4s var(--ease)}
+.avs{--ra:21/8.4;--pa:16/9;display:flex;flex-direction:column;align-items:center;gap:26px;max-width:1040px;margin:0 auto 40px}
+.avc{position:relative;width:90%;transition:width 1s var(--ease),transform 1s var(--ease),opacity .6s,filter .6s}
+.avth{position:relative;overflow:hidden;isolation:isolate;aspect-ratio:var(--ra);border:1px solid rgba(160,127,53,.5);border-radius:20px;background:#0b1510;box-shadow:0 18px 44px rgba(15,31,23,.2);transition:aspect-ratio 1s var(--ease),box-shadow .7s var(--ease),border-color .4s}
+.avth img{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;transform:scale(1.03);transition:transform 1.6s var(--ease)}
 .avth img:not([src]){visibility:hidden}
-.avth::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(6,14,10,.08) 0%,rgba(6,14,10,.5) 100%)}
-.avth::after{content:"";position:absolute;inset:6px;z-index:2;border:1px solid rgba(224,184,98,.45);border-radius:6px;pointer-events:none;transition:border-color .4s,inset .6s var(--ease)}
-.avc:hover,.avc:focus-visible{transform:translateY(-4px);border-color:var(--gold);box-shadow:0 26px 54px rgba(15,31,23,.28)}
-.avc:hover .avth img{transform:scale(1.12)}
-.avc:hover .avth::after{border-color:var(--gold);inset:4px}
-.avp{position:absolute;left:50%;top:50%;z-index:3;display:grid;place-items:center;width:50px;height:50px;margin:-25px 0 0 -25px;border-radius:50%;background:var(--gold);color:var(--forest);box-shadow:0 10px 26px rgba(0,0,0,.4);transition:transform .5s var(--ease),background .4s}
-.avp svg{width:20px;height:20px;margin-left:3px}
+.avv{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:contain;background:#000;opacity:0;transform:scale(1.08);transition:opacity .9s var(--ease),transform 1.8s var(--ease)}
+.avc.go .avv{opacity:1;transform:none}
+.avth::before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(180deg,rgba(6,14,10,.4) 0%,rgba(6,14,10,0) 30%,rgba(6,14,10,.12) 50%,rgba(6,14,10,.9) 100%);transition:opacity .8s}
+.avth::after{content:"";position:absolute;inset:10px;z-index:3;pointer-events:none;border:1px solid rgba(224,184,98,.42);border-radius:12px;transition:opacity .8s,inset .6s var(--ease),border-color .4s}
+.avc.go .avth::before,.avc.pl .avth::after{opacity:0}
+.avlb{position:absolute;left:0;right:0;z-index:4;height:0;background:#000;pointer-events:none;transition:height .9s var(--ease)}
+.avlb.t{top:0}.avlb.b{bottom:0}
+.avc.pl .avlb{height:11%}
+.avc.go .avlb{height:0}
+.avo{position:absolute;inset:0;z-index:5;display:block;width:100%;height:100%;padding:0;border:0;border-radius:inherit;background:transparent;cursor:pointer}
+.avo:focus-visible{outline:2px solid var(--gold);outline-offset:-5px}
+.avp{position:absolute;left:50%;top:50%;display:grid;place-items:center;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;background:var(--gold);color:var(--forest);box-shadow:0 12px 34px rgba(0,0,0,.45);transition:transform .6s var(--ease),background .4s,opacity .5s}
+.avp svg{width:28px;height:28px;margin-left:4px}
 .avp::before{content:"";position:absolute;inset:0;border-radius:50%;border:1.5px solid var(--gold);opacity:0;animation:avring 2.8s ease-out infinite;animation-delay:calc(var(--k)*.35s)}
-@keyframes avring{from{opacity:.85;transform:scale(1)}to{opacity:0;transform:scale(1.8)}}
-.avc:hover .avp{transform:scale(1.12);background:#f3d58f}
-.avt{position:relative;z-index:1;display:block;min-width:0;padding:6px 0}
-.avn{display:flex;align-items:center;gap:12px;margin-bottom:8px;font:400 15px var(--display);letter-spacing:.16em;color:var(--gold)}
-.avn::after{content:"";width:36px;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
-.avt b{display:block;font:600 clamp(21px,2.1vw,29px)/1.15 var(--serif);color:#fff}
-.avt small{display:block;margin-top:9px;font:700 10px var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
-.avt .avl2{display:none}
-.avgo{position:relative;z-index:1;display:grid;place-items:center;width:46px;height:46px;border-radius:50%;border:1px solid rgba(224,184,98,.55);color:var(--gold);transition:background .4s,color .4s,border-color .4s}
-.avgo svg{width:18px;height:18px;transition:transform .5s var(--ease)}
-.avc:hover .avgo,.avc.on .avgo{background:var(--gold);border-color:var(--gold);color:var(--forest)}
-.avc:hover .avgo svg{transform:translateX(3px)}
-.avb{position:absolute;left:0;bottom:0;z-index:4;width:100%;height:3px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .8s var(--ease)}
-.avc.on{transform:translateY(-2px);border-color:var(--gold);box-shadow:0 0 0 2px rgba(224,184,98,.55),0 22px 48px rgba(15,31,23,.28)}
-.avc.on .avb{transform:scaleX(1)}
-.avc.on .avl1{display:none}.avc.on .avl2{display:block}
-.avc.on .avp{background:#fff}
+@keyframes avring{from{opacity:.85;transform:scale(1)}to{opacity:0;transform:scale(1.9)}}
+.avc.pl .avp{opacity:0;transform:scale(.5)}
+.avt{position:absolute;left:30px;right:30px;bottom:28px;z-index:3;pointer-events:none;transition:opacity .6s,transform .8s var(--ease)}
+.avc.pl .avt{opacity:0;transform:translateY(14px)}
+.avn{display:flex;align-items:center;gap:12px;margin-bottom:8px;font:400 16px var(--display);letter-spacing:.16em;color:var(--gold);text-shadow:0 2px 10px rgba(0,0,0,.55)}
+.avn::after{content:"";width:40px;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
+.avt b{display:block;font:600 clamp(26px,3.4vw,42px)/1.1 var(--serif);color:#fff;text-shadow:0 2px 16px rgba(0,0,0,.5)}
+.avt small{display:block;margin-top:9px;font:700 10px var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+.avtag{position:absolute;left:16px;top:16px;z-index:7;display:flex;align-items:center;gap:9px;max-width:calc(100% - 90px);padding:8px 15px;border:1px solid rgba(224,184,98,.5);border-radius:40px;background:rgba(10,20,15,.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:#fff;font:700 10px var(--sans);letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:0;transform:translateY(-8px);pointer-events:none;transition:opacity .7s .3s,transform .7s .3s var(--ease)}
+.avtag i{flex:none;width:7px;height:7px;border-radius:50%;background:var(--gold);animation:blink 1.6s ease-in-out infinite}
+.avtag em{font-style:normal;color:var(--gold)}
+.avc.go .avtag{opacity:1;transform:none}
+.avk{display:grid;place-items:center;width:44px;height:44px;padding:0;border-radius:50%;border:1px solid rgba(255,255,255,.55);background:rgba(10,20,15,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:#fff;cursor:pointer;transition:background .3s,color .3s,border-color .3s}
+.avk:hover{background:var(--gold);border-color:var(--gold);color:var(--forest)}
+.avk svg{width:18px;height:18px}
+.avx2{position:absolute;top:14px;right:14px;z-index:7}
+.avctl{position:absolute;right:14px;bottom:16px;z-index:7;display:flex;gap:10px}
+.avx2,.avctl{opacity:0;pointer-events:none;transition:opacity .6s .3s}
+.avc.go .avx2,.avc.go .avctl{opacity:1;pointer-events:auto}
+.avpz .p2,.avsd .s2{display:none}
+.avpz.alt .p1,.avsd.mu .s1{display:none}
+.avpz.alt .p2,.avsd.mu .s2{display:block}
+.avb{position:absolute;left:0;bottom:0;z-index:8;width:0;height:3px;background:var(--gold);pointer-events:none}
+.avsp{position:absolute;left:50%;top:50%;z-index:6;display:none;width:44px;height:44px;margin:-22px 0 0 -22px;border:3px solid rgba(255,255,255,.25);border-top-color:var(--gold);border-radius:50%;animation:avspin .8s linear infinite;pointer-events:none}
+.avc.buf .avsp{display:block}
+@keyframes avspin{to{transform:rotate(360deg)}}
+.avnf{position:absolute;left:50%;top:50%;z-index:7;display:none;width:min(80%,420px);padding:14px 18px;border-radius:12px;background:rgba(10,20,15,.85);color:#fff;font:400 13px/1.5 var(--sans);text-align:center;transform:translate(-50%,-50%)}
+.avc.nf .avnf{display:block}
+@media(hover:hover){
+.avc:not(.pl):hover{transform:translateY(-5px)}
+.avc:not(.pl):hover .avth{border-color:var(--gold);box-shadow:0 30px 60px rgba(15,31,23,.32)}
+.avc:not(.pl):hover .avth img{transform:scale(1.09)}
+.avc:not(.pl):hover .avth::after{border-color:var(--gold);inset:7px}
+.avc:not(.pl):hover .avp{transform:scale(1.1);background:#f3d58f}
+.avs.hp .avc:not(.pl):hover{opacity:.95;filter:none}
+}
+.avc.pl{width:100%}
+.avc.pl .avth{aspect-ratio:var(--pa);border-color:var(--gold);box-shadow:0 0 0 2px rgba(224,184,98,.55),0 44px 90px rgba(15,31,23,.45)}
+.avs.hp .avc:not(.pl){opacity:.5;filter:saturate(.6);transform:scale(.97)}
 .avs.on .avc{animation:vcin .9s var(--ease) backwards;animation-delay:calc(var(--k)*.08s + .15s)}
 /* next button inside the video overlay */
 .amnx{position:absolute;top:14px;right:14px;z-index:6;display:flex;align-items:center;gap:8px;height:44px;padding:0 16px 0 20px;border-radius:40px;border:1px solid rgba(255,255,255,.6);background:rgba(10,20,15,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:#fff;font:700 11px var(--sans);letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:all .3s}
@@ -1905,27 +1932,29 @@ body.kprint .khd,body.kprint .kr-hero,body.kprint .kr-t em{-webkit-print-color-a
 }
 @media(max-width:860px){
 .avhd .d{display:none}.avhd .m{display:inline}
-.avs{gap:12px;margin:0 0 26px}
-.avc{grid-template-columns:112px minmax(0,1fr) auto;gap:0 14px;padding:8px 14px 8px 8px;border-radius:14px}
-.avc:hover,.avc.on{transform:none}
-.avth{aspect-ratio:1/1.1;border-radius:9px}
-.avth::after{inset:5px;border-radius:5px}
-.avp{width:38px;height:38px;margin:-19px 0 0 -19px}
-.avp svg{width:16px;height:16px}
-.avn{font-size:13px;gap:8px;margin-bottom:6px}
-.avn::after{width:22px}
-.avt b{font-size:20px}
-.avt small{font-size:9px;letter-spacing:.18em;margin-top:7px}
-.avgo{width:34px;height:34px}
-.avgo svg{width:15px;height:15px}
+.avs{--ra:2/1;--pa:16/10;gap:16px;margin:0 auto 28px}
+.avc{width:94%}
+.avth{border-radius:16px}
+.avth::after{inset:7px;border-radius:10px}
+.avp{width:56px;height:56px;margin:-28px 0 0 -28px}
+.avp svg{width:22px;height:22px;margin-left:3px}
+.avt{left:18px;right:18px;bottom:16px}
+.avn{font-size:13px;gap:8px;margin-bottom:5px}
+.avn::after{width:24px}
+.avt b{font-size:24px}
+.avt small{font-size:9px;letter-spacing:.2em;margin-top:6px}
+.avk{width:40px;height:40px}
+.avx2{top:10px;right:10px}
+.avctl{right:10px;bottom:12px;gap:8px}
+.avtag{left:10px;top:10px;max-width:calc(100% - 68px);padding:7px 12px;font-size:9px}
 .amnx span{display:none}
 .amnx{width:44px;padding:0;justify-content:center}
 .amt{left:68px;right:68px;padding:0 14px;overflow:hidden}
 .amt .ano{display:none}
 .amt b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 }
-@media(max-width:380px){.avc{grid-template-columns:92px minmax(0,1fr) auto;gap:0 11px}.avt b{font-size:18px}}
-@media(prefers-reduced-motion:reduce){.avp::before{animation:none}.avs.on .avc{animation:none}}
+@media(max-width:380px){.avt b{font-size:21px}.avp{width:50px;height:50px;margin:-25px 0 0 -25px}}
+@media(prefers-reduced-motion:reduce){.avp::before{animation:none}.avs.on .avc{animation:none}.avc,.avth,.avv,.avlb{transition-duration:.01s}}
 </style>
 </head>
 <body>
@@ -2048,7 +2077,7 @@ body.kprint .khd,body.kprint .kr-hero,body.kprint .kr-t em{-webkit-print-color-a
 
  <section class="amen" id="amenities"><div class="wrap amw">
   <div class="ahead rv"><p class="kick">Amenities</p><h2>Explore the village, one amenity at a time</h2><p class="lead">Choose a video below, or tap a pin on the map, to see each amenity up close.</p></div>
-  <div class="avhd rv"><b>Amenity videos</b><span class="d">Tap a video to watch</span><span class="m">Tap to watch</span></div><div class="avs rv" id="amChips" role="group" aria-label="Amenity videos"></div>
+  <div class="avhd rv"><b>Amenity videos</b><span class="d">Tap a video to play it right here</span><span class="m">Tap to play</span></div><div class="avs rv" id="amChips" role="group" aria-label="Amenity videos"></div>
   <div class="agrid">
    <div class="amapw rv" id="amMap"><div class="amz" id="amZ"><img data-a="amap" alt="Alara Village amenities map"></div><div class="amov" id="amStage"><img id="amImg" alt=""><div id="amYT"></div><video id="amVid" playsinline disablepictureinpicture controlslist="nodownload noplaybackrate noremoteplayback" preload="auto"></video><span class="amt"><i class="ano" id="amNo">Amenities</i><b id="amN"></b></span><iframe id="amFr" title="Amenity video" allow="autoplay; fullscreen" allowfullscreen></iframe><button type="button" class="amx" id="amX" aria-label="Back to map">&times;</button><button type="button" class="amnx" id="amNx" aria-label="Next amenity video"><span>Next</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></button><button type="button" class="amp" id="amPlay" aria-label="Pause video"><svg class="i1" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><svg class="i2" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button><button type="button" class="amp ams" id="amSnd" aria-label="Turn sound off"><svg class="i1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m16 9 5 6M21 9l-5 6"/></svg><svg class="i2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg></button><div class="amb"><i id="amBar"></i></div></div></div>
    <div class="amback" id="amBkw"><button type="button" class="btn dk" id="amBk"><i></i>Back to amenities map</button></div>
@@ -2439,7 +2468,7 @@ var AM=[
 var amCur=-1,amStg=$("amStage"),amImg=$("amImg"),amFr=$("amFr");
 loadAsset("amap",AMAPID);
 AM.forEach(function(a,i){loadAsset("am-"+i,a.i)});
-$("amChips").innerHTML=AM.map(function(a,i){return '<button type="button" class="avc" data-i="'+i+'" style="--k:'+i+'" aria-pressed="false" aria-label="Play '+a.n+' video"><span class="avth"><img data-a="am-'+i+'" alt=""><span class="avp" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></span><span class="avt"><span class="avn">0'+(i+1)+'</span><b>'+a.n+'</b><small class="avl1">Watch video</small><small class="avl2">Now playing</small></span><span class="avgo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></span><i class="avb"></i></button>'}).join("");
+$("amChips").innerHTML=AM.map(function(a,i){return '<div class="avc" data-i="'+i+'" style="--k:'+i+'"><div class="avth"><img data-a="am-'+i+'" alt=""><video class="avv" playsinline disablepictureinpicture controlslist="nodownload noplaybackrate noremoteplayback" preload="none"></video><i class="avlb t"></i><i class="avlb b"></i><button type="button" class="avo" aria-pressed="false" aria-label="Play '+a.n+' video"><span class="avp" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></button><span class="avt"><span class="avn">0'+(i+1)+'</span><b>'+a.n+'</b><small>Watch video</small></span><span class="avtag"><i></i><em>Now playing</em>'+a.n+'</span><span class="avsp"></span><span class="avnf"></span><button type="button" class="avk avx2" aria-label="Close video"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="avctl"><button type="button" class="avk avpz" aria-label="Pause video"><svg class="p1" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><svg class="p2" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button><button type="button" class="avk avsd" aria-label="Turn sound off"><svg class="s1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg><svg class="s2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m16 9 5 6M21 9l-5 6"/></svg></button></div><i class="avb"></i></div></div>'}).join("");
 AM.forEach(function(a,i){
  var p=document.createElement("button");p.type="button";p.className="apin";p.dataset.i=i;p.setAttribute("aria-label",a.n);
  p.style.setProperty("--x",a.x+"%");p.style.setProperty("--y",a.y+"%");p.innerHTML=(i+1)+"<span>"+a.n+"</span>";
@@ -2500,7 +2529,7 @@ document.querySelectorAll(".apin,.avc").forEach(function(e){["pointerenter","tou
 (function amtick(){if(amVid.duration&&!amVid.paused)amBar.style.width=(amVid.currentTime/amVid.duration*100)+"%";requestAnimationFrame(amtick)})();
 amFr.onload=function(){if(amStg.dataset.fb==="1"&&/drive\.google/.test(amFr.src))amStg.classList.add("vid")};
 var amMapEl=$("amMap"),amT;
-function amMark(i){document.querySelectorAll(".apin,.avc").forEach(function(e){var on=+e.dataset.i===i;e.classList.toggle("on",on);if(e.classList.contains("avc"))e.setAttribute("aria-pressed",on)})}
+function amMark(i){document.querySelectorAll(".apin").forEach(function(e){e.classList.toggle("on",+e.dataset.i===i)})}
 function amStart(i){
  var a=AM[i];amCur=i;amMark(i);
  $("amN").textContent=a.n;$("amNo").textContent="Amenity 0"+(i+1)+" of 0"+AM.length;
@@ -2510,7 +2539,7 @@ function amStart(i){
  amWarm(a);
  amT=setTimeout(function(){amMapEl.classList.add("in");$("amBkw").classList.add("on");amMode()},1000);
 }
-function amGo(i){
+function amGo(i){avStop();
  clearTimeout(amT);
  if(location.hash==="#calibrate"){amCur=i;amMark(i);$("amCal").textContent=AM[i].n+": click the map to place its pin";return}
  var amr=amMapEl.getBoundingClientRect();if(innerWidth<=860||amr.top<70||amr.bottom>innerHeight-20)amMapEl.scrollIntoView({behavior:"smooth",block:"center"});
@@ -2526,13 +2555,61 @@ function amBack(){
 $("amX").onclick=$("amBk").onclick=amBack;
 $("amNx").onclick=function(){amGo((amCur+1)%AM.length)};
 addEventListener("keydown",function(e){if(e.key==="Escape"&&amMapEl.classList.contains("zm"))amBack()});
-document.querySelectorAll(".apin,.avc").forEach(function(e){e.onclick=function(){amGo(+e.dataset.i)}});
+document.querySelectorAll(".apin").forEach(function(e){e.onclick=function(){amGo(+e.dataset.i)}});
 $("amMap").addEventListener("click",function(e){
  if(location.hash!=="#calibrate"||amCur<0||e.target.closest(".apin"))return;
  var r=this.getBoundingClientRect(),x=Math.round((e.clientX-r.left)/r.width*1000)/10,y=Math.round((e.clientY-r.top)/r.height*1000)/10,p=document.querySelector('.apin[data-i="'+amCur+'"]');
  p.style.setProperty("--x",x+"%");p.style.setProperty("--y",y+"%");
  $("amCal").textContent=AM[amCur].n+" -> x:"+x+",y:"+y;
 });
+
+/* amenity list: cinematic inline player (plays in the same spot and grows) */
+var avCur=-1,avTok=0,avAuto=false,avList=$("amChips");
+function avEl(i){return avList.querySelector('.avc[data-i="'+i+'"]')}
+function avSnd(c){var v=c.querySelector(".avv"),b=c.querySelector(".avsd");b.classList.toggle("mu",v.muted);b.setAttribute("aria-label",v.muted?"Turn sound on":"Turn sound off")}
+function avStop(){
+ if(avCur<0)return;
+ var c=avEl(avCur),v=c.querySelector(".avv");avTok++;
+ v.pause();v.onplaying=v.onended=v.onerror=v.onwaiting=v.ontimeupdate=v.onplay=v.onpause=null;v.removeAttribute("src");try{v.load()}catch(e){}
+ c.classList.remove("pl","go","buf","nf");c.querySelector(".avb").style.width="0%";c.querySelector(".avo").setAttribute("aria-pressed","false");
+ c.querySelector(".avpz").classList.remove("alt");
+ avList.classList.remove("hp");avCur=-1;avAuto=false;
+}
+function avTry(v,t){var pr=v.play();if(pr&&pr.catch)pr.catch(function(e){if(t!==avTok)return;if(e&&e.name==="NotAllowedError"&&!v.muted){v.muted=true;avAuto=true;avSnd(v.closest(".avc"));var q=v.play();if(q&&q.catch)q.catch(function(){})}})}
+function avPlay(i){
+ if(avCur===i){var v0=avEl(i).querySelector(".avv");if(v0.paused)avTry(v0,avTok);else v0.pause();return}
+ if(amMapEl.classList.contains("zm"))amBack();
+ avStop();
+ var a=AM[i],c=avEl(i),v=c.querySelector(".avv"),bar=c.querySelector(".avb"),pz=c.querySelector(".avpz"),t=++avTok,k=0,cs=amCands(a);
+ avCur=i;c.classList.add("pl","buf");avList.classList.add("hp");c.querySelector(".avo").setAttribute("aria-pressed","true");
+ v.muted=!amWant;v.loop=false;v.preload="auto";avSnd(c);
+ v.onplaying=function(){if(t!==avTok)return;c.classList.add("go");c.classList.remove("buf");var u=v.getAttribute("src")||"",m=u.match(/^(.*\/)?[^\/]+(\.[A-Za-z0-9]+)$/);if(m)AMPREF={d:m[1]||"",e:m[2]}};
+ v.onwaiting=function(){if(t===avTok&&c.classList.contains("go"))c.classList.add("buf")};
+ v.onended=function(){if(t===avTok)avStop()};
+ v.onplay=function(){pz.classList.remove("alt");pz.setAttribute("aria-label","Pause video")};
+ v.onpause=function(){if(!v.ended){pz.classList.add("alt");pz.setAttribute("aria-label","Play video")}};
+ v.ontimeupdate=function(){if(v.duration)bar.style.width=(v.currentTime/v.duration*100)+"%"};
+ v.oncontextmenu=function(){return false};
+ function nx(){
+  if(t!==avTok)return;
+  if(k>=cs.length){c.classList.remove("buf");c.classList.add("nf");c.querySelector(".avnf").textContent="Video not found. Upload it as "+AMDIR+a.f+AMEXT+" in your project (folder and file names are case-sensitive).";return}
+  v.src=cs[k++];avTry(v,t)
+ }
+ v.onerror=function(){if(t===avTok)nx()};
+ nx();
+ setTimeout(function(){if(t===avTok)c.scrollIntoView({behavior:"smooth",block:"center"})},650);
+}
+avList.addEventListener("click",function(e){
+ var c=e.target.closest(".avc");if(!c)return;var i=+c.dataset.i,v=c.querySelector(".avv");
+ if(e.target.closest(".avx2")){avStop();return}
+ if(e.target.closest(".avpz")){if(v.paused)avTry(v,avTok);else v.pause();return}
+ if(e.target.closest(".avsd")){v.muted=!v.muted;amWant=!v.muted;avAuto=false;avSnd(c);return}
+ if(e.target.closest(".avo"))avPlay(i);
+});
+avList.querySelectorAll(".avc").forEach(function(e){["pointerenter","touchstart"].forEach(function(ev){e.addEventListener(ev,function(){var a=AM[+e.dataset.i];if(a)amWarm(a)},{passive:true,once:ev==="touchstart"})})});
+["pointerdown","touchend","keydown"].forEach(function(ev){addEventListener(ev,function(){if(avAuto&&amWant&&avCur>=0){avAuto=false;var c=avEl(avCur);c.querySelector(".avv").muted=false;avSnd(c)}},true)});
+addEventListener("keydown",function(e){if(e.key==="Escape")avStop()});
+if("IntersectionObserver" in window){var avIO=new IntersectionObserver(function(es){es.forEach(function(en){if(!en.isIntersecting&&+en.target.dataset.i===avCur){var v=en.target.querySelector(".avv");if(!v.paused)v.pause()}})},{threshold:.15});avList.querySelectorAll(".avc").forEach(function(e){avIO.observe(e)})}
 
 /* slider */
 var slides=document.querySelectorAll(".slide"),ths=document.querySelectorAll(".th"),fxs=document.querySelectorAll(".fx"),T=$("title"),cur=0,timer,DUR=7000;
