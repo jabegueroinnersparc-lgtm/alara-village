@@ -23,6 +23,8 @@ const CONTACT_EMAIL = 'dellosacharlene1317@gmail.com';   // shown in the email f
 const COMPUTATION_PDF_FILE_ID = '1Abv7ZQpwxww0Z5cwJSVRNJdH31YMt32R';
 const COMPUTATION_PDF_NAME = 'Alara Village House Model Computations.pdf';
 const TIMEZONE = 'Asia/Manila';
+const ATTACH_PDF = false;   // false = send the computations as a Google Drive link only. Attachments (especially PDFs) from a new Gmail sender raise the spam score.
+const SPAM_TEST_RECIPIENT = '';   // optional: paste a test address from mail-tester.com, then run testSpamScore
 const HEADERS = ['Timestamp', 'Name', 'Mobile', 'Email', 'Model', 'Preferred Visit Date', 'Status', 'Source', 'Emails'];
 const PROP_KEY = 'LEADS_SPREADSHEET_ID';
 
@@ -121,7 +123,7 @@ function saveLead(d) {
 function sendLeadEmails_(lead) {
   const m = MODELS[lead.model] || null;
   const blob = m ? modelImage_(m.img) : null;
-  const pdf = computationPdf_();
+  const pdf = ATTACH_PDF ? computationPdf_() : null;
   const inline = blob ? { modelimg: blob } : undefined;
   const result = [];
 
@@ -181,8 +183,8 @@ function testModelImages() {
 function leadSubject_(lead) {
   const first = firstName_(lead.name);
   return lead.model
-    ? first + ', your visit to ' + BRAND + ' is noted \u2013 meet the ' + lead.model
-    : first + ', thank you for your interest in ' + BRAND;
+    ? first + ', your ' + BRAND + ' visit request (' + lead.model + ')'
+    : first + ', your ' + BRAND + ' visit request';
 }
 
 function leadText_(lead, m) {
@@ -193,8 +195,11 @@ function leadText_(lead, m) {
     (m ? m.pitch + '\n\n' : '') +
     'Our sales team will contact you shortly on ' + lead.phone + ' to confirm your schedule.\n\n' +
     'Questions? Call ' + CONTACT_PHONE + ' or reply to this email.\n\n' +
-    'Attached: ' + COMPUTATION_PDF_NAME + '\n' +
-    'Open the computations online: ' + computationPdfUrl_() + '\n\nWarm regards,\nThe ' + BRAND + ' Team';
+    (ATTACH_PDF ? 'Attached: ' + COMPUTATION_PDF_NAME + '\n' : '') +
+    'House model computations (PDF): ' + computationPdfUrl_() + '\n\n' +
+    'Simply reply to this email to confirm your visit, and please add ' + ADMIN_EMAIL + ' to your contacts so our messages always reach your inbox.\n\n' +
+    'Warm regards,\nThe ' + BRAND + ' Team\n\n' +
+    'You received this because you requested a visit on our website. If this was not you, reply to this email and we will remove your details.';
 }
 
 function leadHtml_(lead, m, hasImg, pdfUrl) {
@@ -231,8 +236,7 @@ function leadHtml_(lead, m, hasImg, pdfUrl) {
       '</td></tr>';
   }
 
-  return '<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="x-apple-disable-message-reformatting"></head><body style="margin:0;padding:0;background:#eef2ec;">' +
-    '<div style="display:none;max-height:0;overflow:hidden;opacity:0;">Your visit request for the ' + model + ' is in. Here is what happens next.</div>' +
+  return '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="x-apple-disable-message-reformatting"><title>Your ' + BRAND + ' visit request</title></head><body style="margin:0;padding:0;background:#eef2ec;">' +
     '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#eef2ec;padding:28px 12px;"><tr><td align="center">' +
     '<table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:100%;max-width:600px;background:#ffffff;border-radius:6px;overflow:hidden;font-family:Arial,Helvetica,sans-serif;color:#1b2a22;">' +
 
@@ -269,7 +273,7 @@ function leadHtml_(lead, m, hasImg, pdfUrl) {
       '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f4f7f2;border:1px solid #c9d8c7;border-radius:6px;">' +
         '<tr><td style="padding:18px 20px;">' +
           '<div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#a07f35;font-weight:700;margin-bottom:8px;">Your house model computations</div>' +
-          '<div style="font-size:14.5px;line-height:1.6;color:#3d4d43;">We attached a PDF with sample computations for all Alara Village house models. You can also open it online:</div>' +
+          '<div style="font-size:14.5px;line-height:1.6;color:#3d4d43;">' + (ATTACH_PDF ? 'We attached a PDF with sample computations for all Alara Village house models. You can also open it online:' : 'Here is a PDF with sample computations for all Alara Village house models. Open it online:') + '</div>' +
           (pdfUrl ? '<a href="' + esc_(pdfUrl) + '" style="display:block;width:100%;box-sizing:border-box;text-align:center;background:#2e4d3e;color:#ffffff;text-decoration:none;font-weight:bold;font-size:12px;letter-spacing:1px;text-transform:uppercase;padding:13px 14px;border-radius:3px;margin-top:14px;">View all computations &rarr;</a>' : '') +
         '</td></tr>' +
       '</table>' +
@@ -302,7 +306,7 @@ function leadHtml_(lead, m, hasImg, pdfUrl) {
     // footer
     '<tr><td align="center" style="background:' + forest + ';padding:22px 20px;font-size:12px;line-height:1.7;color:#b9c8bd;">' +
       '<b style="color:#ffffff;letter-spacing:3px;text-transform:uppercase;">' + BRAND + '</b><br>' + esc_(CONTACT_PHONE) + ' &nbsp;|&nbsp; ' + esc_(CONTACT_EMAIL) + '<br>' +
-      '<span style="color:#8aa58f;">You are receiving this email because you requested a visit on our website. Renders are for illustration; final details are confirmed by our sales team.</span>' +
+      '<span style="color:#8aa58f;">Charlene L. Dellosa &middot; Innersparc Realty Corporation<br>You are receiving this email because you requested a visit on our website. If this was not you, reply to this email and we will remove your details. Renders are for illustration; final details are confirmed by our sales team.</span>' +
     '</td></tr>' +
 
     '</table></td></tr></table></body></html>';
@@ -539,5 +543,23 @@ function testSave() {
   Logger.log(saveLead({
     id: 'test-' + Date.now(), name: 'Test Lead', phone: '09000000000', email: ADMIN_EMAIL,
     model: 'Raya', date: Utilities.formatDate(new Date(Date.now() + 7 * 864e5), TIMEZONE, 'yyyy-MM-dd'), source: 'testSave'
+  }));
+}
+
+/** Shows how many emails this account can still send today (free Gmail ~100/day, Workspace ~1,500/day). */
+function checkMailQuota() {
+  Logger.log('Emails left today: ' + MailApp.getRemainingDailyQuota());
+}
+
+/**
+ * Spam check: 1) open https://www.mail-tester.com and copy the address it shows,
+ * 2) paste it into SPAM_TEST_RECIPIENT at the top, 3) run this function,
+ * 4) click "Then check your score" on mail-tester. Aim for 9/10 or higher.
+ */
+function testSpamScore() {
+  if (!SPAM_TEST_RECIPIENT) { Logger.log('Set SPAM_TEST_RECIPIENT first (address from mail-tester.com).'); return; }
+  Logger.log(sendLeadEmails_({
+    id: 'spamtest-' + Date.now(), name: 'Test Buyer', phone: '09000000000', email: SPAM_TEST_RECIPIENT,
+    model: 'Raya', date: Utilities.formatDate(new Date(Date.now() + 7 * 864e5), TIMEZONE, 'yyyy-MM-dd'), source: 'testSpamScore'
   }));
 }
