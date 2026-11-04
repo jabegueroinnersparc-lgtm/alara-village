@@ -1866,27 +1866,34 @@ body.kprint .khd,body.kprint .kr-hero,body.kprint .kr-t em{-webkit-print-color-a
 .avhd b::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 5px rgba(224,184,98,.25);animation:blink 1.6s ease-in-out infinite}
 .avhd span{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#6a796f}
 .avhd .m{display:none}
-.avs{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px;margin:0 0 30px}
-.avc{position:relative;overflow:hidden;isolation:isolate;display:block;width:100%;aspect-ratio:3/4;padding:0;border:1px solid rgba(160,127,53,.45);border-radius:12px;background:linear-gradient(135deg,#2c4a3a,#0f1f17);color:#fff;text-align:left;cursor:pointer;box-shadow:0 16px 36px rgba(15,31,23,.16);transition:transform .6s var(--ease),box-shadow .6s var(--ease),border-color .4s}
-.avc img{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;transform:scale(1.03);transition:transform 1.4s var(--ease)}
-.avc img:not([src]){visibility:hidden}
-.avc::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(6,14,10,.38) 0%,rgba(6,14,10,0) 34%,rgba(6,14,10,.2) 52%,rgba(6,14,10,.92) 100%)}
-.avc::after{content:"";position:absolute;inset:8px;z-index:2;border:1px solid rgba(224,184,98,.4);border-radius:8px;pointer-events:none;transition:border-color .4s,inset .6s var(--ease)}
-.avc:hover,.avc:focus-visible{transform:translateY(-8px);border-color:var(--gold);box-shadow:0 30px 60px rgba(15,31,23,.3)}
-.avc:hover img{transform:scale(1.12)}
-.avc:hover::after{border-color:var(--gold);inset:6px}
-.avn{position:absolute;left:15px;top:13px;z-index:3;font:400 17px var(--display);letter-spacing:.04em;color:var(--gold);text-shadow:0 2px 10px rgba(0,0,0,.55)}
-.avp{position:absolute;left:50%;top:44%;z-index:3;display:grid;place-items:center;width:58px;height:58px;margin:-29px 0 0 -29px;border-radius:50%;background:var(--gold);color:var(--forest);box-shadow:0 10px 28px rgba(0,0,0,.4);transition:transform .5s var(--ease),background .4s}
-.avp svg{width:24px;height:24px;margin-left:3px}
+.avs{display:flex;flex-direction:column;gap:14px;margin:0 0 34px}
+.avc{position:relative;overflow:hidden;isolation:isolate;display:grid;grid-template-columns:clamp(190px,24%,270px) minmax(0,1fr) auto;align-items:center;gap:0 clamp(18px,2.4vw,34px);width:100%;padding:10px 28px 10px 10px;border:1px solid rgba(160,127,53,.45);border-radius:16px;background:linear-gradient(115deg,#1d3b2d 0%,#12281d 55%,#0c1a13 100%);color:#fff;text-align:left;cursor:pointer;box-shadow:0 14px 34px rgba(15,31,23,.14);transition:transform .6s var(--ease),box-shadow .6s var(--ease),border-color .4s}
+.avc::before{content:"";position:absolute;inset:0;z-index:0;background:radial-gradient(120% 160% at 100% 0%,rgba(224,184,98,.14),transparent 55%);pointer-events:none}
+.avth{position:relative;z-index:1;display:block;aspect-ratio:16/10;border-radius:10px;overflow:hidden;background:#0f1f17}
+.avth img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.03);transition:transform 1.4s var(--ease)}
+.avth img:not([src]){visibility:hidden}
+.avth::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(6,14,10,.08) 0%,rgba(6,14,10,.5) 100%)}
+.avth::after{content:"";position:absolute;inset:6px;z-index:2;border:1px solid rgba(224,184,98,.45);border-radius:6px;pointer-events:none;transition:border-color .4s,inset .6s var(--ease)}
+.avc:hover,.avc:focus-visible{transform:translateY(-4px);border-color:var(--gold);box-shadow:0 26px 54px rgba(15,31,23,.28)}
+.avc:hover .avth img{transform:scale(1.12)}
+.avc:hover .avth::after{border-color:var(--gold);inset:4px}
+.avp{position:absolute;left:50%;top:50%;z-index:3;display:grid;place-items:center;width:50px;height:50px;margin:-25px 0 0 -25px;border-radius:50%;background:var(--gold);color:var(--forest);box-shadow:0 10px 26px rgba(0,0,0,.4);transition:transform .5s var(--ease),background .4s}
+.avp svg{width:20px;height:20px;margin-left:3px}
 .avp::before{content:"";position:absolute;inset:0;border-radius:50%;border:1.5px solid var(--gold);opacity:0;animation:avring 2.8s ease-out infinite;animation-delay:calc(var(--k)*.35s)}
 @keyframes avring{from{opacity:.85;transform:scale(1)}to{opacity:0;transform:scale(1.8)}}
 .avc:hover .avp{transform:scale(1.12);background:#f3d58f}
-.avt{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:0 18px 20px}
-.avt small{display:block;margin-bottom:5px;font:700 10px var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.avt{position:relative;z-index:1;display:block;min-width:0;padding:6px 0}
+.avn{display:flex;align-items:center;gap:12px;margin-bottom:8px;font:400 15px var(--display);letter-spacing:.16em;color:var(--gold)}
+.avn::after{content:"";width:36px;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
+.avt b{display:block;font:600 clamp(21px,2.1vw,29px)/1.15 var(--serif);color:#fff}
+.avt small{display:block;margin-top:9px;font:700 10px var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
 .avt .avl2{display:none}
-.avt b{display:block;font:600 clamp(18px,1.6vw,22px)/1.15 var(--serif);color:#fff}
+.avgo{position:relative;z-index:1;display:grid;place-items:center;width:46px;height:46px;border-radius:50%;border:1px solid rgba(224,184,98,.55);color:var(--gold);transition:background .4s,color .4s,border-color .4s}
+.avgo svg{width:18px;height:18px;transition:transform .5s var(--ease)}
+.avc:hover .avgo,.avc.on .avgo{background:var(--gold);border-color:var(--gold);color:var(--forest)}
+.avc:hover .avgo svg{transform:translateX(3px)}
 .avb{position:absolute;left:0;bottom:0;z-index:4;width:100%;height:3px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .8s var(--ease)}
-.avc.on{transform:translateY(-6px);border-color:var(--gold);box-shadow:0 0 0 2px rgba(224,184,98,.55),0 26px 56px rgba(15,31,23,.3)}
+.avc.on{transform:translateY(-2px);border-color:var(--gold);box-shadow:0 0 0 2px rgba(224,184,98,.55),0 22px 48px rgba(15,31,23,.28)}
 .avc.on .avb{transform:scaleX(1)}
 .avc.on .avl1{display:none}.avc.on .avl2{display:block}
 .avc.on .avp{background:#fff}
@@ -1895,25 +1902,29 @@ body.kprint .khd,body.kprint .kr-hero,body.kprint .kr-t em{-webkit-print-color-a
 .amnx{position:absolute;top:14px;right:14px;z-index:6;display:flex;align-items:center;gap:8px;height:44px;padding:0 16px 0 20px;border-radius:40px;border:1px solid rgba(255,255,255,.6);background:rgba(10,20,15,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:#fff;font:700 11px var(--sans);letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:all .3s}
 .amnx svg{width:16px;height:16px}
 .amnx:hover{background:var(--gold);border-color:var(--gold);color:var(--forest)}
-@media(max-width:1100px) and (min-width:861px){
-.avs{grid-template-columns:repeat(3,minmax(0,1fr))}
-.avc{aspect-ratio:4/3}
-.avp{top:42%}
 }
 @media(max-width:860px){
 .avhd .d{display:none}.avhd .m{display:inline}
-.avs{display:flex;gap:12px;overflow-x:auto;margin:0 -4vw 22px;padding:12px 4vw 20px;scroll-snap-type:x mandatory;scroll-padding:0 4vw;scrollbar-width:none;-webkit-overflow-scrolling:touch}
-.avs::-webkit-scrollbar{display:none}
-.avc{flex:0 0 min(60vw,250px);width:auto;aspect-ratio:3/4;scroll-snap-align:start}
-.avc:hover{transform:none}
-.avc.on{transform:none}
-.avt b{font-size:21px}
+.avs{gap:12px;margin:0 0 26px}
+.avc{grid-template-columns:112px minmax(0,1fr) auto;gap:0 14px;padding:8px 14px 8px 8px;border-radius:14px}
+.avc:hover,.avc.on{transform:none}
+.avth{aspect-ratio:1/1.1;border-radius:9px}
+.avth::after{inset:5px;border-radius:5px}
+.avp{width:38px;height:38px;margin:-19px 0 0 -19px}
+.avp svg{width:16px;height:16px}
+.avn{font-size:13px;gap:8px;margin-bottom:6px}
+.avn::after{width:22px}
+.avt b{font-size:20px}
+.avt small{font-size:9px;letter-spacing:.18em;margin-top:7px}
+.avgo{width:34px;height:34px}
+.avgo svg{width:15px;height:15px}
 .amnx span{display:none}
 .amnx{width:44px;padding:0;justify-content:center}
 .amt{left:68px;right:68px;padding:0 14px;overflow:hidden}
 .amt .ano{display:none}
 .amt b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 }
+@media(max-width:380px){.avc{grid-template-columns:92px minmax(0,1fr) auto;gap:0 11px}.avt b{font-size:18px}}
 @media(prefers-reduced-motion:reduce){.avp::before{animation:none}.avs.on .avc{animation:none}}
 </style>
 </head>
@@ -2037,7 +2048,7 @@ body.kprint .khd,body.kprint .kr-hero,body.kprint .kr-t em{-webkit-print-color-a
 
  <section class="amen" id="amenities"><div class="wrap amw">
   <div class="ahead rv"><p class="kick">Amenities</p><h2>Explore the village, one amenity at a time</h2><p class="lead">Choose a video below, or tap a pin on the map, to see each amenity up close.</p></div>
-  <div class="avhd rv"><b>Amenity videos</b><span class="d">Tap a card to watch</span><span class="m">Swipe to browse</span></div><div class="avs rv" id="amChips" role="group" aria-label="Amenity videos"></div>
+  <div class="avhd rv"><b>Amenity videos</b><span class="d">Tap a video to watch</span><span class="m">Tap to watch</span></div><div class="avs rv" id="amChips" role="group" aria-label="Amenity videos"></div>
   <div class="agrid">
    <div class="amapw rv" id="amMap"><div class="amz" id="amZ"><img data-a="amap" alt="Alara Village amenities map"></div><div class="amov" id="amStage"><img id="amImg" alt=""><div id="amYT"></div><video id="amVid" playsinline disablepictureinpicture controlslist="nodownload noplaybackrate noremoteplayback" preload="auto"></video><span class="amt"><i class="ano" id="amNo">Amenities</i><b id="amN"></b></span><iframe id="amFr" title="Amenity video" allow="autoplay; fullscreen" allowfullscreen></iframe><button type="button" class="amx" id="amX" aria-label="Back to map">&times;</button><button type="button" class="amnx" id="amNx" aria-label="Next amenity video"><span>Next</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></button><button type="button" class="amp" id="amPlay" aria-label="Pause video"><svg class="i1" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><svg class="i2" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button><button type="button" class="amp ams" id="amSnd" aria-label="Turn sound off"><svg class="i1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m16 9 5 6M21 9l-5 6"/></svg><svg class="i2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg></button><div class="amb"><i id="amBar"></i></div></div></div>
    <div class="amback" id="amBkw"><button type="button" class="btn dk" id="amBk"><i></i>Back to amenities map</button></div>
@@ -2428,7 +2439,7 @@ var AM=[
 var amCur=-1,amStg=$("amStage"),amImg=$("amImg"),amFr=$("amFr");
 loadAsset("amap",AMAPID);
 AM.forEach(function(a,i){loadAsset("am-"+i,a.i)});
-$("amChips").innerHTML=AM.map(function(a,i){return '<button type="button" class="avc" data-i="'+i+'" style="--k:'+i+'" aria-pressed="false" aria-label="Play '+a.n+' video"><img data-a="am-'+i+'" alt=""><span class="avn">0'+(i+1)+'</span><span class="avp" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span class="avt"><small class="avl1">Watch video</small><small class="avl2">Now playing</small><b>'+a.n+'</b></span><i class="avb"></i></button>'}).join("");
+$("amChips").innerHTML=AM.map(function(a,i){return '<button type="button" class="avc" data-i="'+i+'" style="--k:'+i+'" aria-pressed="false" aria-label="Play '+a.n+' video"><span class="avth"><img data-a="am-'+i+'" alt=""><span class="avp" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></span><span class="avt"><span class="avn">0'+(i+1)+'</span><b>'+a.n+'</b><small class="avl1">Watch video</small><small class="avl2">Now playing</small></span><span class="avgo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></span><i class="avb"></i></button>'}).join("");
 AM.forEach(function(a,i){
  var p=document.createElement("button");p.type="button";p.className="apin";p.dataset.i=i;p.setAttribute("aria-label",a.n);
  p.style.setProperty("--x",a.x+"%");p.style.setProperty("--y",a.y+"%");p.innerHTML=(i+1)+"<span>"+a.n+"</span>";
