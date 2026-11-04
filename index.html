@@ -2819,17 +2819,29 @@ function renderCal(dir){
  cg.innerHTML=h;cg.style.setProperty("--dx",(dir||0)*28+"px");cg.classList.remove("sl");void cg.offsetWidth;cg.classList.add("sl");
  $("cprev").disabled=(vy===today.getFullYear()&&vmn===today.getMonth());
 }
+/* keeps the whole calendar in view inside the scrolling form while it opens (and when the month changes) */
+function calReveal(){
+ var vr=vm.querySelector(".vr"),t0=performance.now();
+ (function step(){
+  if(!fdw.classList.contains("open"))return;
+  var r=vr.getBoundingClientRect(),f=fdw.getBoundingClientRect(),pad=14;
+  if(f.height>r.height-pad*2){var d0=f.top-r.top-pad;if(Math.abs(d0)>1)vr.scrollTop+=d0*.35}
+  else if(f.bottom>r.bottom-pad)vr.scrollTop+=Math.ceil(f.bottom-(r.bottom-pad));
+  else if(f.top<r.top+pad)vr.scrollTop-=Math.ceil(r.top+pad-f.top);
+  if(performance.now()-t0<800)requestAnimationFrame(step)
+ })()
+}
 function calToggle(o){var open=o===undefined?!fdw.classList.contains("open"):o;
  if(open){var b=selD?new Date(selD+"T00:00:00"):today;vy=b.getFullYear();vmn=b.getMonth();renderCal(0)}
- fdw.classList.toggle("open",open);fdw.querySelector(".fd").classList.toggle("open",open);dtb.setAttribute("aria-expanded",open)}
+ fdw.classList.toggle("open",open);fdw.querySelector(".fd").classList.toggle("open",open);dtb.setAttribute("aria-expanded",open);if(open)calReveal()}
 function pick(s){selD=s;$("dt").value=s;
  if(s){dtv.textContent=new Date(s+"T00:00:00").toLocaleDateString("en-PH",{weekday:"long",month:"long",day:"numeric",year:"numeric"});dtb.classList.remove("ph")}
  else{dtv.textContent="Select a date";dtb.classList.add("ph")}
  cg.querySelectorAll(".cd").forEach(function(x){x.classList.toggle("sel",x.dataset.d===s)});
  setTimeout(function(){calToggle(false)},380)}
 dtb.onclick=function(){calToggle()};
-$("cprev").onclick=function(){vmn--;if(vmn<0){vmn=11;vy--}renderCal(-1)};
-$("cnext").onclick=function(){vmn++;if(vmn>11){vmn=0;vy++}renderCal(1)};
+$("cprev").onclick=function(){vmn--;if(vmn<0){vmn=11;vy--}renderCal(-1);calReveal()};
+$("cnext").onclick=function(){vmn++;if(vmn>11){vmn=0;vy++}renderCal(1);calReveal()};
 cg.addEventListener("click",function(e){var b=e.target.closest(".cd");if(b&&!b.disabled)pick(b.dataset.d)});
 document.querySelectorAll(".cq button").forEach(function(b){b.onclick=function(){
  if(b.dataset.add==="clear")return pick("");
