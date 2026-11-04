@@ -16,7 +16,7 @@
  */
 const SHEET_NAME = 'Leads';
 const SPREADSHEET_ID = '';   // optional: paste a Google Sheet ID here. Leave empty to auto-detect or auto-create.
-const ADMIN_EMAIL = 'jabeguero.innersparc@gmail.com';   // receives every new lead + gets replies from leads
+const ADMIN_EMAIL = 'dellosacharlene1317@gmail.com';   // receives every new lead + gets replies from leads
 const BRAND = 'Alara Village';
 const CONTACT_PHONE = '+639169994124';            // update to your real sales number
 const CONTACT_EMAIL = 'dellosacharlene1317@gmail.com';   // shown in the email footer; update if different
