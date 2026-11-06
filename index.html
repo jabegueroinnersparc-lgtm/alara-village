@@ -1929,7 +1929,6 @@ body.kprint .khd,body.kprint .kr-hero,body.kprint .kr-t em{-webkit-print-color-a
 .amnx{position:absolute;top:14px;right:14px;z-index:6;display:flex;align-items:center;gap:8px;height:44px;padding:0 16px 0 20px;border-radius:40px;border:1px solid rgba(255,255,255,.6);background:rgba(10,20,15,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:#fff;font:700 11px var(--sans);letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:all .3s}
 .amnx svg{width:16px;height:16px}
 .amnx:hover{background:var(--gold);border-color:var(--gold);color:var(--forest)}
-}
 @media(max-width:860px){
 .avhd .d{display:none}.avhd .m{display:inline}
 .avs{--ra:2/1;--pa:16/10;gap:16px;margin:0 auto 28px}
@@ -2525,6 +2524,9 @@ amVid.addEventListener("waiting",function(){if(amStg.classList.contains("amplay"
 amVid.addEventListener("playing",function(){amStg.classList.remove("abuf")});
 /* start downloading the chosen amenity video during the zoom animation so it is ready when the overlay opens */
 function amWarm(a){if(SAVE||a.yt)return;var u=amCands(a)[0];if(u&&amWv.getAttribute("src")!==u){amWv.src=u;try{amWv.load()}catch(e){}}}
+/* speed-up: start fetching the first amenity video before the visitor reaches the list, and fetch the next one while one plays */
+if("IntersectionObserver" in window){new IntersectionObserver(function(es,o){if(es[0].isIntersecting){amWarm(AM[0]);o.disconnect()}},{rootMargin:"700px 0px"}).observe($("amChips"))}
+function amWarmNext(i){amWarm(AM[(i+1)%AM.length])}
 document.querySelectorAll(".apin,.avc").forEach(function(e){["pointerenter","touchstart"].forEach(function(ev){e.addEventListener(ev,function(){var a=AM[+e.dataset.i];if(a)amWarm(a)},{passive:true,once:ev==="touchstart"})})});
 (function amtick(){if(amVid.duration&&!amVid.paused)amBar.style.width=(amVid.currentTime/amVid.duration*100)+"%";requestAnimationFrame(amtick)})();
 amFr.onload=function(){if(amStg.dataset.fb==="1"&&/drive\.google/.test(amFr.src))amStg.classList.add("vid")};
@@ -2586,7 +2588,7 @@ function avPlay(i){
  var a=AM[i],c=avEl(i),v=c.querySelector(".avv"),bar=c.querySelector(".avb"),pz=c.querySelector(".avpz"),t=++avTok,k=0,cs=amCands(a);
  avCur=i;c.classList.add("pl","buf");avList.classList.add("hp");c.querySelector(".avo").setAttribute("aria-pressed","true");
  v.muted=!amWant;v.loop=false;v.preload="auto";avSnd(c);
- v.onplaying=function(){if(t!==avTok)return;c.classList.add("go");c.classList.remove("buf");avUi(c,false);var u=v.getAttribute("src")||"",m=u.match(/^(.*\/)?[^\/]+(\.[A-Za-z0-9]+)$/);if(m)AMPREF={d:m[1]||"",e:m[2]}};
+ v.onplaying=function(){if(t!==avTok)return;c.classList.add("go");c.classList.remove("buf");avUi(c,false);setTimeout(function(){if(t===avTok)amWarmNext(i)},3000);var u=v.getAttribute("src")||"",m=u.match(/^(.*\/)?[^\/]+(\.[A-Za-z0-9]+)$/);if(m)AMPREF={d:m[1]||"",e:m[2]}};
  v.onwaiting=function(){if(t===avTok&&c.classList.contains("go"))c.classList.add("buf")};
  v.onended=function(){if(t===avTok)avStop()};
  v.onplay=function(){pz.classList.remove("alt");pz.setAttribute("aria-label","Pause video")};
@@ -3119,7 +3121,7 @@ vid.addEventListener("pause",function(){setTimeout(function(){if(inView&&!userPa
   if(!isYT()&&vid.duration)bar.style.width=(vid.currentTime/vid.duration*100)+"%";
   if(cur>=0){var f=Math.min(1,Math.max(0,(parseFloat(bar.style.width)||0)/100));
    tl.style.setProperty("--p",cur<D.length-1?(cur+f)/(D.length-1):1);
-   btns[cur].style.setProperty("--vp",f);if(f>.3&&!isYT())prefetchAt(cur+1)}
+   btns[cur].style.setProperty("--vp",f);if(f>.04&&!isYT())prefetchAt(cur+1)}
  }
  requestAnimationFrame(tick)})();
 vid.addEventListener("ended",function(){if(!isYT())next()});
